@@ -5,6 +5,10 @@ app:
   debug: true
   port: 3000
 
+# Database
+database:
+  connection: 'mysql'
+
 # Mysql
 mysql:
   host: '127.0.0.1'
@@ -12,3 +16,5 @@ mysql:
   database: 'goer'
   username: 'root'
   password: ''
+  max-idle-connections: 10
+  max-open-connections: 100

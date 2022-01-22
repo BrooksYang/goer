@@ -1,6 +1,6 @@
 package config
 
 type Config struct {
-	App   App   `mapstructure:"app" json:"app" yaml:"app"`
-	Mysql Mysql `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
+	App      App      `mapstructure:"app" json:"app" yaml:"app"`
+	Database Database `mapstructure:"database" json:"database" yaml:"database"`
 }
