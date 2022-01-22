@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"goer/bootstrap"
 	"goer/global"
 	"goer/pkg/config"
 
@@ -37,5 +38,6 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	config.InitConfig(cfgFile, &global.Config)
+	config.InitConfig(cfgFile, &global.Config) // Init viper
+	global.DB = bootstrap.Gorm()               // Init database
 }

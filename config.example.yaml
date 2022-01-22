@@ -18,3 +18,7 @@ mysql:
   password: ''
   max-idle-connections: 10
   max-open-connections: 100
+
+# Sqlite
+sqlite:
+  database: 'database/goer.db'
