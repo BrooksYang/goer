@@ -4,6 +4,8 @@ go 1.17
 
 require (
 	github.com/fsnotify/fsnotify v1.5.1
+	github.com/gertd/go-pluralize v0.1.7
+	github.com/iancoleman/strcase v0.2.0
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/spf13/cobra v1.3.0
 	github.com/spf13/viper v1.10.1
