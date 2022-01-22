@@ -42,9 +42,6 @@ func InitConfig(path string, data interface{}) *viper.Viper {
 		return nil
 	}
 
-	// log
-	log.Printf("read config file: %v\n", v.ConfigFileUsed())
-
 	// Watch config file
 	v.WatchConfig()
 
