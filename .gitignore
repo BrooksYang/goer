@@ -1,0 +1,15 @@
+# system file
+.DS_Store
+
+# editor
+.idea
+.vscode
+
+# tmp
+tmp/
+
+# build
+goer
+
+# config file
+config.yaml

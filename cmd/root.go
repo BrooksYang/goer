@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"goer/global"
+	"goer/pkg/config"
+
 	"github.com/spf13/cobra"
 )
 
@@ -34,4 +37,5 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
+	config.InitConfig(cfgFile, &global.Config)
 }
