@@ -39,5 +39,6 @@ func init() {
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
 	config.InitConfig(cfgFile, &global.Config) // Init viper
+	global.Config.App.SetTimezone()            // Init timezone
 	global.DB = bootstrap.Gorm()               // Init database
 }

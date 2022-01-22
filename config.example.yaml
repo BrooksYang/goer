@@ -4,6 +4,7 @@ app:
   env: 'local'
   debug: true
   port: 3000
+  timezone: 'UTC'
 
 # Database
 database:
