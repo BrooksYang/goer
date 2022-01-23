@@ -9,7 +9,7 @@ import (
 
 var CmdMakeModel = &cobra.Command{
 	Use:   "model",
-	Short: "Create a new model file",
+	Short: "Create a new model",
 	Run:   runMakeModel,
 	Args:  cobra.ExactArgs(1),
 }

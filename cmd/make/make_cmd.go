@@ -9,7 +9,7 @@ import (
 
 var CmdMakeCMD = &cobra.Command{
 	Use:   "cmd",
-	Short: "Create a command",
+	Short: "Create a new command",
 	Run:   runMakeCMD,
 	Args:  cobra.ExactArgs(1),
 }
