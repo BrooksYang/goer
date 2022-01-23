@@ -1,0 +1,11 @@
+package {{PackageName}}
+
+import (
+	"goer/app/models"
+)
+
+type {{StructName}} struct {
+	models.BaseModel
+
+	models.TimestampsField
+}

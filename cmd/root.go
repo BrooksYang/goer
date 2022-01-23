@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"goer/bootstrap"
+	"goer/cmd/make"
 	"goer/global"
 	"goer/pkg/config"
 
@@ -34,6 +35,11 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	// Add sub command
+	rootCmd.AddCommand(
+		make.CmdMake,
+	)
 }
 
 // initConfig reads in config file and ENV variables if set.

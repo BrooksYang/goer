@@ -21,6 +21,7 @@ type Model struct {
 	VariableName       string
 	VariableNamePlural string
 	PackageName        string
+	Directory          string
 }
 
 //go:embed stubs
@@ -33,18 +34,30 @@ var CmdMake = &cobra.Command{
 
 func init() {
 	CmdMake.AddCommand(
+		CmdMakeModel,
 		CmdMakeMigration,
 	)
 }
 
-func makeModelFromString(name string) Model {
+func makeModelFromString(path string) Model {
+	arr := strings.Split(path, "/")
+	name := arr[len(arr)-1]
+
 	model := Model{}
 	model.StructName = str.Singular(strcase.ToCamel(name))
 	model.StructNamePlural = str.Plural(model.StructName)
 	model.TableName = str.Snake(model.StructNamePlural)
 	model.VariableName = str.LowerCamel(model.StructName)
-	model.PackageName = str.Snake(model.StructName)
 	model.VariableNamePlural = str.LowerCamel(model.StructNamePlural)
+
+	// Directory
+	directorArr := arr[:len(arr)-1]
+	if len(directorArr) == 0 {
+		directorArr = []string{model.VariableName}
+	}
+	model.Directory = strings.Join(directorArr, "/") + "/"
+	model.PackageName = str.Snake(directorArr[len(directorArr)-1])
+
 	return model
 }
 
@@ -80,5 +93,5 @@ func createFileFromStub(filePath string, stubName string, model Model, variables
 		console.Exit(err.Error())
 	}
 
-	fmt.Printf("%s %s", ansi.Color("Created Migration: ", "green"), filePath)
+	fmt.Printf("%s %s\n", ansi.Color("Created:", "green"), filePath)
 }
