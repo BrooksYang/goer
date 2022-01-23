@@ -5,6 +5,8 @@ import (
 	"os"
 	"time"
 
+	"goer/global"
+
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +22,7 @@ func runMakeMigration(cmd *cobra.Command, args []string) {
 
 	model := makeModelFromString(args[0])
 	fileName := timeStr + "_" + model.PackageName
-	dir := "database/migrations"
+	dir := global.MigrationsFolder
 	filePath := fmt.Sprintf("%s/%s.go", dir, fileName)
 
 	// mkdir -p, 0777
