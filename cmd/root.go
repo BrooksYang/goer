@@ -3,6 +3,7 @@ package cmd
 import (
 	"goer/bootstrap"
 	"goer/cmd/make"
+	"goer/cmd/migrate"
 	"goer/global"
 	"goer/pkg/config"
 
@@ -39,6 +40,7 @@ func init() {
 	// Add sub command
 	rootCmd.AddCommand(
 		make.CmdMake,
+		migrate.CmdMigrate,
 	)
 }
 
