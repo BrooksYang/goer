@@ -17,6 +17,9 @@ var CmdMakeModel = &cobra.Command{
 func runMakeModel(cmd *cobra.Command, args []string) {
 
 	model := makeModelFromString(args[0])
+	if model.Directory == "" {
+		model.PackageName = "models"
+	}
 
 	dir := fmt.Sprintf("app/models/%s", model.Directory)
 
