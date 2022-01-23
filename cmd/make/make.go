@@ -34,6 +34,7 @@ var CmdMake = &cobra.Command{
 
 func init() {
 	CmdMake.AddCommand(
+		CmdMakeCMD,
 		CmdMakeModel,
 		CmdMakeMigration,
 	)
@@ -48,15 +49,16 @@ func makeModelFromString(path string) Model {
 	model.StructNamePlural = str.Plural(model.StructName)
 	model.TableName = str.Snake(model.StructNamePlural)
 	model.VariableName = str.LowerCamel(model.StructName)
+	model.PackageName = str.Snake(model.StructName)
 	model.VariableNamePlural = str.LowerCamel(model.StructNamePlural)
 
 	// Directory
 	directorArr := arr[:len(arr)-1]
-	if len(directorArr) == 0 {
-		directorArr = []string{model.VariableName}
+	model.Directory = strings.Join(directorArr, "/")
+	if model.Directory != "" {
+		model.Directory = model.Directory + "/"
+		model.PackageName = str.Snake(directorArr[len(directorArr)-1])
 	}
-	model.Directory = strings.Join(directorArr, "/") + "/"
-	model.PackageName = str.Snake(directorArr[len(directorArr)-1])
 
 	return model
 }

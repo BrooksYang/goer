@@ -1,0 +1,16 @@
+package {{PackageName}}
+
+import (
+	"github.com/spf13/cobra"
+)
+
+var Cmd{{StructName}} = &cobra.Command{
+	Use:   "{{PackageName}}",
+	Short: "A brief description of your command",
+	Run:   run{{StructName}},
+	Args:  cobra.ExactArgs(1),
+}
+
+func run{{StructName}}(cmd *cobra.Command, args []string) {
+
+}
