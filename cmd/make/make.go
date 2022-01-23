@@ -61,6 +61,10 @@ func makeModelFromString(path string) Model {
 		model.PackageName = str.Snake(directorArr[len(directorArr)-1])
 	}
 
+	// Table name
+	model.TableName = strings.Replace(model.TableName, "create_", "", 1)
+	model.TableName = strings.Replace(model.TableName, "_tables", "", 1)
+
 	return model
 }
 
