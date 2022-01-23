@@ -164,14 +164,10 @@ func (migrator *Migrator) Refresh() {
 }
 
 func (migrator *Migrator) Fresh() {
-
-	// Get database
-	dbname := database.CurrentDatabase()
-
 	// Delete all tables
 	err := database.DeleteAllTables()
 	console.ExitIf(err)
-	console.Info("Dropped all tables successfully." + dbname)
+	console.Info("Dropped all tables successfully.")
 
 	// Migrate
 	migrator.createMigrationsTable()
