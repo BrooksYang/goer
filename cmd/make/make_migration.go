@@ -2,6 +2,7 @@ package make
 
 import (
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -19,7 +20,11 @@ func runMakeMigration(cmd *cobra.Command, args []string) {
 
 	model := makeModelFromString(args[0])
 	fileName := timeStr + "_" + model.PackageName
-	filePath := fmt.Sprintf("database/migrations/%s.go", fileName)
+	dir := "database/migrations"
+	filePath := fmt.Sprintf("%s/%s.go", dir, fileName)
+
+	// mkdir -p, 0777
+	_ = os.MkdirAll(dir, os.ModePerm)
 
 	createFileFromStub(filePath, "migration", model, map[string]string{"{{FileName}}": fileName})
 }
