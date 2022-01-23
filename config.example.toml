@@ -1,0 +1,21 @@
+[app]
+name = "Goer"
+env = "local"
+debug = true
+port = 3000
+timezone = "UTC"
+
+[database]
+connection = "mysql"
+
+[database.mysql]
+host = "127.0.0.1"
+port = 3306
+database = "goer"
+username = "root"
+password = ""
+max-idle-connections = 10
+max-open-connections = 100
+
+[database.sqlite]
+database = "database/goer.db"

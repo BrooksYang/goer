@@ -4,6 +4,8 @@ import (
 	"log"
 	"os"
 
+	"goer/global"
+
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -11,7 +13,7 @@ import (
 
 func InitConfig(path string, data interface{}) *viper.Viper {
 	// Default config file
-	cfgFile := "config.yaml"
+	cfgFile := global.ConfigFile
 
 	// Use config file from the flag.
 	if path != "" {
@@ -23,7 +25,7 @@ func InitConfig(path string, data interface{}) *viper.Viper {
 	v.SetConfigFile(cfgFile)
 
 	// Config type，support JSON, TOML, YAML, HCL, env file and Java properties config files
-	v.SetConfigType("yaml")
+	v.SetConfigType(global.ConfigFileSuffix)
 
 	// Find home directory.
 	home, err := os.UserHomeDir()

@@ -12,4 +12,4 @@ tmp/
 goer
 
 # config file
-config.yaml
+config.toml
