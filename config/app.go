@@ -5,11 +5,11 @@ import (
 )
 
 type App struct {
-	Name     string `mapstructure:"name" json:"name" yaml:"name"`
-	Env      string `mapstructure:"env" json:"env" yaml:"env"`
-	Debug    bool   `mapstructure:"debug" json:"debug" yaml:"debug"`
-	Port     uint   `mapstructure:"port" json:"port" yaml:"port"`
-	Timezone string `mapstructure:"timezone" json:"timezone" yaml:"timezone"`
+	Name     string `mapstructure:"name" json:"name"`
+	Env      string `mapstructure:"env" json:"env"`
+	Debug    bool   `mapstructure:"debug" json:"debug"`
+	Port     uint   `mapstructure:"port" json:"port"`
+	Timezone string `mapstructure:"timezone" json:"timezone"`
 }
 
 func (a App) SetTimezone() {
