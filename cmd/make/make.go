@@ -20,6 +20,7 @@ type Model struct {
 	StructNamePlural   string
 	VariableName       string
 	VariableNamePlural string
+	VariableNameSnake  string
 	PackageName        string
 	Directory          string
 }
@@ -35,6 +36,7 @@ var CmdMake = &cobra.Command{
 func init() {
 	CmdMake.AddCommand(
 		CmdMakeCMD,
+		CmdMakeController,
 		CmdMakeMiddleware,
 		CmdMakeMigration,
 		CmdMakeModel,
@@ -48,6 +50,7 @@ func makeModelFromString(path string) Model {
 	model := Model{}
 	model.StructName = str.Singular(strcase.ToCamel(name))
 	model.StructNamePlural = str.Plural(model.StructName)
+	model.VariableNameSnake = str.Snake(model.StructName)
 	model.TableName = str.Snake(model.StructNamePlural)
 	model.VariableName = str.LowerCamel(model.StructName)
 	model.PackageName = str.Snake(model.StructName)

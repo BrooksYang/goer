@@ -1,0 +1,17 @@
+package {{PackageName}}
+
+import (
+	v1 "goer/app/http/controllers/v1"
+	"goer/pkg/response"
+
+	"github.com/gin-gonic/gin"
+)
+
+type {{StructName}} struct {
+	v1.BaseController
+}
+
+func (*{{StructName}}) Index(c *gin.Context) {
+
+	response.Success(c)
+}
