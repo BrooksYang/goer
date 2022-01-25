@@ -1,0 +1,13 @@
+package {{PackageName}}Request
+
+import "goer/pkg/http"
+
+type {{StructName}} struct {
+	Field  string `form:"field" binding:"required"`
+}
+
+func (req {{StructName}}) Messages() http.ValidatorMessages {
+	return http.ValidatorMessages{
+		"Field.required":  "Field is required",
+	}
+}

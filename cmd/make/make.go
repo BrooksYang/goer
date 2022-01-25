@@ -37,6 +37,7 @@ func init() {
 	CmdMake.AddCommand(
 		CmdMakeCMD,
 		CmdMakeController,
+		CmdMakeRequest,
 		CmdMakeMiddleware,
 		CmdMakeMigration,
 		CmdMakeModel,

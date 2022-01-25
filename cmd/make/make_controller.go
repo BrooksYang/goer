@@ -2,7 +2,6 @@ package make
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -20,8 +19,6 @@ func runMakeController(cmd *cobra.Command, args []string) {
 	if model.Directory == "" {
 		model.PackageName = "controllers"
 	}
-
-	log.Printf("%+v", model)
 
 	dir := fmt.Sprintf("app/http/controllers/%s", model.Directory)
 
