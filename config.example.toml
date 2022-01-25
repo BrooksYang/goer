@@ -19,3 +19,6 @@ max-open-connections = 100
 
 [database.sqlite]
 database = "database/goer.db"
+
+[paging]
+per_page = 15
