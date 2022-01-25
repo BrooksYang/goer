@@ -20,5 +20,9 @@ max_open_connection = 100
 [database.sqlite]
 database = "database/goer.db"
 
+[jwt]
+secret_key = ""
+ttl = 604800
+
 [paging]
 per_page = 15
