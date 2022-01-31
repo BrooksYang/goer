@@ -20,6 +20,9 @@ func SetupRouter() *gin.Engine {
 	// Common routes
 	routes.MapCommonRoutes(r)
 
+	// api
+	routes.MapApiRoutes(r)
+
 	return r
 }
 
