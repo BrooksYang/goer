@@ -13,14 +13,14 @@ func Auth() gin.HandlerFunc {
 		// Get auth user
 		userInfo := auth.User(c)
 		if userInfo.ID == 0 {
-			response.Fail(errno.InvalidToken, c)
+			response.Fail(c, errno.InvalidToken)
 			c.Abort()
 			return
 		}
 
 		// account invalid
 		if !userInfo.IsValid {
-			response.Fail(errno.AccountLocked, c)
+			response.Fail(c, errno.AccountLocked)
 			c.Abort()
 			return
 		}

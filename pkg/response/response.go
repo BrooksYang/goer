@@ -52,7 +52,7 @@ func Detail(c *gin.Context, data interface{}, message string) {
 	Result(c, SUCCESS, data, message)
 }
 
-func Fail(errno *Errno, c *gin.Context) {
+func Fail(c *gin.Context, errno *Errno) {
 	ErrnoResult(c, errno, map[string]interface{}{})
 }
 
