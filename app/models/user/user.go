@@ -10,9 +10,9 @@ type User struct {
 	Uid          string `json:"uid"`
 	CountryId    int64  `json:"country_id"`
 	Name         string `json:"name"`
-	Username     string `json:"username"`
-	Email        string `json:"email"`
-	Phone        string `json:"phone"`
+	Username     string `json:"username" gorm:"default:null"`
+	Email        string `json:"email" gorm:"default:null"`
+	Phone        string `json:"phone" gorm:"default:null"`
 	Password     string `json:"-"`
 	PayPassword  string `json:"-"`
 	GoogleKey    string `json:"-"`
@@ -29,3 +29,19 @@ type User struct {
 
 	models.TimestampsField
 }
+
+// Google status: 'unbind','disabled','enabled'
+type GoogleStatus string
+
+// Gender: 'secret', 'male', 'female'
+type Gender string
+
+const (
+	GoogleStatusUnbind   GoogleStatus = "unbind"
+	GoogleStatusDisabled GoogleStatus = "disabled"
+	GoogleStatusEnabled  GoogleStatus = "enabled"
+
+	GenderSecret Gender = "secret"
+	GenderMale   Gender = "male"
+	GenderFemale Gender = "female"
+)
