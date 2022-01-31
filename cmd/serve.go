@@ -28,7 +28,11 @@ func init() {
 
 func runServe(cmd *cobra.Command, args []string) {
 	// Gin mode: debug, release, test
-	gin.SetMode(gin.ReleaseMode)
+	if global.Config.App.Debug {
+		gin.SetMode(gin.DebugMode)
+	} else {
+		gin.SetMode(gin.ReleaseMode)
+	}
 
 	router := bootstrap.SetupRouter()
 
