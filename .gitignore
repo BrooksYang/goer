@@ -5,6 +5,9 @@
 .idea
 .vscode
 
+# air hot reload
+.air.toml
+
 # tmp
 tmp/
 
