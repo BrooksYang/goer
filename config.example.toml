@@ -26,3 +26,7 @@ ttl = 604800
 
 [paging]
 per_page = 15
+
+[common]
+uid_length = 8
+default_password = ""
