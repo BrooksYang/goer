@@ -13,5 +13,5 @@ type Mysql struct {
 }
 
 func (m *Mysql) Dsn() string {
-	return fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4", m.Username, m.Password, m.Host, m.Port, m.Database)
+	return fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", m.Username, m.Password, m.Host, m.Port, m.Database)
 }
