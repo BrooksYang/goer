@@ -11,7 +11,7 @@ import (
 // @title           API Docs
 // @version         1.0
 
-// @host      localhost:8080
+// @host      localhost:3000
 // @BasePath  /
 
 // @securityDefinitions.apikey  Bearer
@@ -21,7 +21,7 @@ func MapSwagRoutes(r *gin.Engine) {
 	// swagger info
 	docs.SwaggerInfo.Title = "API Docs"
 	docs.SwaggerInfo.Version = "1.0"
-	// docs.SwaggerInfo.Host = "localhost:8080"
+	// docs.SwaggerInfo.Host = "localhost:3000"
 	// docs.SwaggerInfo.BasePath = "/"
 	// docs.SwaggerInfo.Schemes = []string{"http", "https"}
 

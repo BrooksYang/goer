@@ -17,6 +17,9 @@ func SetupRouter() *gin.Engine {
 	// gin-swagger
 	routes.MapSwagRoutes(r)
 
+	// Common routes
+	routes.MapCommonRoutes(r)
+
 	return r
 }
 
