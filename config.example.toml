@@ -20,6 +20,10 @@ max_open_connection = 100
 [database.sqlite]
 database = "database/goer.db"
 
+[aes]
+key = ""
+iv = ""
+
 [jwt]
 secret_key = ""
 ttl = 604800
