@@ -7,4 +7,5 @@ type Config struct {
 	Database Database `mapstructure:"database" json:"database"`
 	JWT      JWT      `mapstructure:"jwt" json:"jwt"`
 	Paging   Paging   `mapstructure:"paging" json:"paging"`
+	Swag     Swag     `mapstructure:"swag" json:"swag"`
 }

@@ -24,6 +24,10 @@ database = "database/goer.db"
 key = ""
 iv = ""
 
+[common]
+uid_length = 8
+default_password = ""
+
 [jwt]
 secret_key = ""
 ttl = 604800
@@ -31,6 +35,5 @@ ttl = 604800
 [paging]
 per_page = 15
 
-[common]
-uid_length = 8
-default_password = ""
+[swag]
+api_doc = true

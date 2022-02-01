@@ -2,6 +2,7 @@ package bootstrap
 
 import (
 	"goer/app/http/middleware"
+	"goer/global"
 	"goer/routes"
 
 	"github.com/gin-gonic/gin"
@@ -15,7 +16,9 @@ func SetupRouter() *gin.Engine {
 	registerGlobalMiddleWare(r)
 
 	// gin-swagger
-	routes.MapSwagRoutes(r)
+	if global.Config.Swag.ApiDoc {
+		routes.MapSwagRoutes(r)
+	}
 
 	// Common routes
 	routes.MapCommonRoutes(r)
