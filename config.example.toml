@@ -20,6 +20,12 @@ max_open_connection = 100
 [database.sqlite]
 database = "database/goer.db"
 
+[database.redis]
+host = "127.0.0.1"
+port = 6379
+password = ""
+database = 0
+
 [aes]
 key = ""
 iv = ""
