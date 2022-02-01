@@ -11,6 +11,10 @@ var Cmd{{StructName}} = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 }
 
+func init() {
+	rootCmd.AddCommand(Cmd{{StructName}})
+}
+
 func run{{StructName}}(cmd *cobra.Command, args []string) {
 
 }
