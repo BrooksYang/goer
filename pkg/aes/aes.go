@@ -6,6 +6,13 @@ import (
 	b64 "encoding/base64"
 )
 
+func NewClient(key string, iv string) *AesClient {
+	return &AesClient{
+		Key: key,
+		Iv:  iv,
+	}
+}
+
 type AesClient struct {
 	Key string
 	Iv  string
