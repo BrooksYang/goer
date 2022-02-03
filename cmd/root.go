@@ -49,5 +49,5 @@ func initConfig() {
 	config.InitConfig(cfgFile, &global.Config) // Init viper
 	global.Config.App.SetTimezone()            // Init timezone
 	global.DB = bootstrap.Gorm()               // Init database
-	global.Redis = bootstrap.Redis()           // Init redis
+	bootstrap.Redis()                          // Init redis
 }
