@@ -37,6 +37,16 @@ func (cs *CacheService) Get(key string) interface{} {
 	return wanted
 }
 
+func (cs *CacheService) GetObject(key string, wanted interface{}) {
+	val := cs.Store.Get(key)
+	if len(val) > 0 {
+		err := json.Unmarshal([]byte(val), &wanted)
+		if err != nil {
+			log.Println(err)
+		}
+	}
+}
+
 func (cs *CacheService) Has(key string) bool {
 	return cs.Store.Has(key)
 }
