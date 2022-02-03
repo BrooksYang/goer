@@ -50,4 +50,5 @@ func initConfig() {
 	global.Config.App.SetTimezone()            // Init timezone
 	global.DB = bootstrap.Gorm()               // Init database
 	bootstrap.Redis()                          // Init redis
+	bootstrap.Cache()                          // Init cache
 }
