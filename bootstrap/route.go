@@ -32,6 +32,8 @@ func SetupRouter() *gin.Engine {
 // Register global middlewares
 func registerGlobalMiddleWare(router *gin.Engine) {
 	router.Use(
-		middleware.Cors(),
+		middleware.Cors(),             // 允许跨域请求
+		middleware.LimitMethod("2-S"), // 限制请求方法，GET 不限制，其它每秒2次
+		middleware.LimitIP("10-S"),    // 限制 IP 请求，每秒10次
 	)
 }
