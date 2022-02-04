@@ -15,3 +15,11 @@ type App struct {
 func (a App) SetTimezone() {
 	time.Local, _ = time.LoadLocation(a.Timezone)
 }
+
+func (a App) IsLocal() bool {
+	return a.Env == "local"
+}
+
+func (a App) IsProduction() bool {
+	return a.Env == "production"
+}
