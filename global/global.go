@@ -13,4 +13,5 @@ var (
 	DB     *gorm.DB
 	Redis  *redis.RedisClient
 	Cache  *cache.CacheService
+	Logger *config.Logger
 )
