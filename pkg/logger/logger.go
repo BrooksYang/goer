@@ -13,9 +13,9 @@ import (
 )
 
 type Channel struct {
-	Path  string `mapstructure:"path" json:"path"`
-	Level string `mapstructure:"level" json:"level"`
-	Days  int    `mapstructure:"days" json:"days"`
+	Path  string
+	Level string
+	Days  int
 }
 
 // NewChannel Log channel

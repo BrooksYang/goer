@@ -7,17 +7,17 @@ import (
 )
 
 type Logger struct {
-	Default *zap.Logger `mapstructure:"default" json:"default"`
+	Default *zap.Logger
 }
 
 type Logging struct {
-	Default Channel `mapstructure:"default" json:"default"`
+	Default Channel
 }
 
 type Channel struct {
-	Path  string `mapstructure:"path" json:"path"`
-	Level string `mapstructure:"level" json:"level"`
-	Days  int    `mapstructure:"days" json:"days"`
+	Path  string
+	Level string
+	Days  int
 }
 
 func NewLogging() *Logging {
