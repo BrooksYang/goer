@@ -11,5 +11,6 @@ func Logger() {
 
 	global.Logger = &config.Logger{
 		Default: logger.NewChannel(logger.Channel(logging.Default)),
+		Request: logger.NewChannel(logger.Channel(logging.Request)),
 	}
 }

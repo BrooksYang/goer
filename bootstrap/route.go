@@ -36,5 +36,6 @@ func registerGlobalMiddleWare(router *gin.Engine) {
 		middleware.ForceUserAgent(),   // 强制附带 User-Agent
 		middleware.LimitMethod("1-S"), // 限制请求方法，GET 不限制，其它每秒1次
 		middleware.LimitIP("10-S"),    // 限制 IP 请求，每秒10次
+		middleware.LogRequest(),       // 请求日志
 	)
 }

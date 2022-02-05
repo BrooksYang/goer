@@ -8,10 +8,12 @@ import (
 
 type Logger struct {
 	Default *zap.Logger
+	Request *zap.Logger
 }
 
 type Logging struct {
 	Default Channel
+	Request Channel
 }
 
 type Channel struct {
@@ -24,6 +26,11 @@ func NewLogging() *Logging {
 	return &Logging{
 		Default: Channel{
 			Path:  logPath("serve.log"),
+			Level: "debug",
+			Days:  14,
+		},
+		Request: Channel{
+			Path:  logPath("request.log"),
 			Level: "debug",
 			Days:  14,
 		},
