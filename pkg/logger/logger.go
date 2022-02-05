@@ -13,9 +13,10 @@ import (
 )
 
 type Channel struct {
-	Path  string
-	Level string
-	Days  int
+	Path    string
+	Level   string
+	Days    int
+	Console bool
 }
 
 // NewChannel Log channel
@@ -70,8 +71,8 @@ func getLogWriter(channel Channel) zapcore.WriteSyncer {
 		Compress:   false,
 	}
 
-	// Additionally print to terminal for local environment.
-	if global.Config.App.IsLocal() {
+	// Additionally print to console.
+	if channel.Console {
 		return zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), zapcore.AddSync(lumberJackLogger))
 	}
 
