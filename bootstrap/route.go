@@ -15,6 +15,9 @@ func SetupRouter() *gin.Engine {
 	// Global middlewares
 	registerGlobalMiddleWare(r)
 
+	// Static file server
+	r.StaticFS("storage", gin.Dir("./storage/public", false))
+
 	// gin-swagger
 	if global.Config.Swag.ApiDoc {
 		routes.MapSwagRoutes(r)
