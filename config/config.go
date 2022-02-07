@@ -6,6 +6,7 @@ type Config struct {
 	Common   Common   `mapstructure:"common" json:"common"`
 	Database Database `mapstructure:"database" json:"database"`
 	JWT      JWT      `mapstructure:"jwt" json:"jwt"`
+	Mail     Mail     `mapstructure:"mail" json:"mail"`
 	Paging   Paging   `mapstructure:"paging" json:"paging"`
 	Swag     Swag     `mapstructure:"swag" json:"swag"`
 }

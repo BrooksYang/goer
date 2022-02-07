@@ -27,6 +27,14 @@ password = ""
 database = 0
 database_cache = 1
 
+[mail]
+host = ""
+port = 465
+username = ""
+password = ""
+from_address = ""
+from_name = ""
+
 [aes]
 key = ""
 iv = ""
