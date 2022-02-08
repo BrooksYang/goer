@@ -1,10 +1,17 @@
 package file
 
 import (
+	"fmt"
 	"io/ioutil"
+	"mime/multipart"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
+
+	"goer/pkg/helpers"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Put(data []byte, to string) error {
@@ -26,4 +33,21 @@ func Exists(fileToCheck string) bool {
 
 func GetFileNameWithoutExtension(fileName string) string {
 	return strings.TrimSuffix(fileName, filepath.Ext(fileName))
+}
+
+func SaveUploadedFile(c *gin.Context, file *multipart.FileHeader) (string, error) {
+	// Mkdir
+	storagePath := "storage/public"
+	dirName := fmt.Sprintf("/uploads/%s/", time.Now().Format("2006/01/02"))
+	_ = os.MkdirAll(storagePath+dirName, 0755)
+
+	// Random filename
+	fileName := helpers.RandomString(40) + filepath.Ext(file.Filename)
+
+	path := storagePath + dirName + fileName
+	if err := c.SaveUploadedFile(file, path); err != nil {
+		return "", err
+	}
+
+	return path, nil
 }

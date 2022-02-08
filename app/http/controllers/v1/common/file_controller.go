@@ -1,0 +1,42 @@
+package common
+
+import (
+	"strings"
+
+	v1 "goer/app/http/controllers/v1"
+	commonRequest "goer/app/http/requests/common"
+	"goer/global/errno"
+	"goer/pkg/file"
+	"goer/pkg/http"
+	"goer/pkg/response"
+
+	"github.com/gin-gonic/gin"
+)
+
+type FileController struct {
+	v1.BaseController
+}
+
+// @Summary      Upload image
+// @Security     Bearer
+// @Tags         Common
+// @Accept       multipart/form-data
+// @Produce      json
+// @Param        image  formData  file    true  "image"
+// @Success      200    {string}  string  "OK"
+// @Router       /v1/common/upload [POST]
+func (*FileController) Upload(c *gin.Context) {
+	var request commonRequest.UploadRequest
+	if ok := http.Validate(c, &request); !ok {
+		return
+	}
+
+	path, err := file.SaveUploadedFile(c, request.Image)
+	if err != nil {
+		response.Fail(c, errno.InternalServerError)
+	}
+
+	path = strings.Replace(path, "public/", "", 1)
+
+	response.Data(c, path)
+}
