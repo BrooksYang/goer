@@ -1,6 +1,9 @@
 package http
 
 import (
+	"encoding/json"
+	"errors"
+
 	"goer/pkg/response"
 
 	"github.com/gin-gonic/gin"
@@ -49,6 +52,13 @@ func ParseErrors(request FormRequest, err error) map[string][]string {
 
 func Validate(c *gin.Context, request FormRequest) bool {
 	if err := c.ShouldBind(request); err != nil {
+		// Unmarshal error
+		if _, ok := err.(*json.UnmarshalTypeError); ok {
+			response.BadRequest(c, errors.New("illegal parameter"))
+			return false
+		}
+
+		// Validation error
 		response.ValidationError(c, ParseErrors(request, err))
 		return false
 	}
