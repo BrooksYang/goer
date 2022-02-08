@@ -5,6 +5,7 @@ import (
 
 	v1 "goer/app/http/controllers/v1"
 	commonRequest "goer/app/http/requests/common"
+	"goer/app/rules"
 	"goer/global/errno"
 	"goer/pkg/file"
 	"goer/pkg/http"
@@ -28,6 +29,9 @@ type FileController struct {
 func (*FileController) Upload(c *gin.Context) {
 	var request commonRequest.UploadRequest
 	if ok := http.Validate(c, &request); !ok {
+		return
+	}
+	if ok := rules.ValidateImage(c, request.Image); !ok {
 		return
 	}
 
