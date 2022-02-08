@@ -1,8 +1,6 @@
 package common
 
 import (
-	"strings"
-
 	v1 "goer/app/http/controllers/v1"
 	commonRequest "goer/app/http/requests/common"
 	"goer/app/rules"
@@ -39,8 +37,6 @@ func (*FileController) Upload(c *gin.Context) {
 	if err != nil {
 		response.Fail(c, errno.InternalServerError)
 	}
-
-	path = strings.Replace(path, "public/", "", 1)
 
 	response.Data(c, path)
 }

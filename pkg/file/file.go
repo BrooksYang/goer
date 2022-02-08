@@ -3,6 +3,7 @@ package file
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"mime/multipart"
 	"os"
 	"path/filepath"
@@ -11,6 +12,7 @@ import (
 
 	"goer/pkg/helpers"
 
+	"github.com/disintegration/imaging"
 	"github.com/gin-gonic/gin"
 )
 
@@ -42,12 +44,74 @@ func SaveUploadedFile(c *gin.Context, file *multipart.FileHeader) (string, error
 	_ = os.MkdirAll(storagePath+dirName, 0755)
 
 	// Random filename
-	fileName := helpers.RandomString(40) + filepath.Ext(file.Filename)
+	fileName := randomNameFromUploadFile(file)
 
 	path := storagePath + dirName + fileName
 	if err := c.SaveUploadedFile(file, path); err != nil {
 		return "", err
 	}
 
-	return path, nil
+	// Open image
+	src, err := imaging.Open(path, imaging.AutoOrientation(true))
+	if err != nil {
+		return "", err
+	}
+
+	// Resize ratio
+	resizeRatio := getResizeRatio(file)
+	width := float64(src.Bounds().Size().X) * resizeRatio
+
+	// Resize
+	src = imaging.Resize(src, int(width), 0, imaging.Lanczos)
+	log.Println(src.Bounds().Size())
+	resizedFilename := randomNameFromUploadFile(file)
+	resizedPath := storagePath + dirName + resizedFilename
+	err = imaging.Save(src, resizedPath)
+	if err != nil {
+		return "", err
+	}
+
+	// Remove old file
+	err = os.Remove(path)
+	if err != nil {
+		return "", err
+	}
+
+	resizedPath = strings.Replace(resizedPath, "public/", "", 1)
+
+	return resizedPath, nil
+}
+
+func randomNameFromUploadFile(file *multipart.FileHeader) string {
+	return helpers.RandomString(40) + filepath.Ext(file.Filename)
+}
+
+func getResizeRatio(file *multipart.FileHeader) float64 {
+	// < 100k
+	if file.Size < 1024*100 {
+		return 0
+	}
+
+	// 100k - 300k
+	if file.Size <= 1024*300 {
+		return 0.8
+	}
+
+	// 300k - 500k
+	if file.Size <= 1024*500 {
+		return 0.6
+	}
+
+	// 500k - 1M
+	if file.Size <= 1024*1024 {
+		return 0.5
+	}
+
+	// 1M - 5M
+	if file.Size <= 1024*1024*5 {
+		return 0.3
+	}
+
+	// > 5M
+	return 0.1
 }
