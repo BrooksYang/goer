@@ -74,6 +74,16 @@ func (c *Client) SetHost(host string) (client *Client) {
 	return c
 }
 
+func (c *Client) SetMethod(method string) (client *Client) {
+	c.method = method
+	return c
+}
+
+func (c *Client) SetUrl(url string) (client *Client) {
+	c.url = url
+	return c
+}
+
 func (c *Client) Type(typeStr RequestType) (client *Client) {
 	if _, ok := types[typeStr]; ok {
 		c.requestType = typeStr
