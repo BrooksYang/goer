@@ -52,3 +52,9 @@ per_page = 15
 
 [swag]
 api_doc = true
+
+[open]
+enabled = true
+api_key = ""
+api_secret = ""
+ip = ["*"]

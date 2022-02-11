@@ -9,4 +9,5 @@ type Config struct {
 	Mail     Mail     `mapstructure:"mail" json:"mail"`
 	Paging   Paging   `mapstructure:"paging" json:"paging"`
 	Swag     Swag     `mapstructure:"swag" json:"swag"`
+	Open     Open     `mapstructure:"open" json:"open"`
 }

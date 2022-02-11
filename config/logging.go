@@ -10,12 +10,14 @@ type Logger struct {
 	Default *zap.Logger
 	Request *zap.Logger
 	Mail    *zap.Logger
+	Open    *zap.Logger
 }
 
 type Logging struct {
 	Default Channel
 	Request Channel
 	Mail    Channel
+	Open    Channel
 }
 
 type Channel struct {
@@ -41,6 +43,12 @@ func NewLogging() *Logging {
 		},
 		Mail: Channel{
 			Path:    logPath("mail.log"),
+			Level:   "debug",
+			Days:    14,
+			Console: true,
+		},
+		Open: Channel{
+			Path:    logPath("open.log"),
 			Level:   "debug",
 			Days:    14,
 			Console: true,

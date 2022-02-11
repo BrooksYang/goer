@@ -13,5 +13,6 @@ func Logger() {
 		Default: logger.NewChannel(logger.Channel(logging.Default)),
 		Request: logger.NewChannel(logger.Channel(logging.Request)),
 		Mail:    logger.NewChannel(logger.Channel(logging.Mail)),
+		Open:    logger.NewChannel(logger.Channel(logging.Open)),
 	}
 }
