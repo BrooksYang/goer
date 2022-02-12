@@ -37,6 +37,7 @@ func CheckOpenRequest() gin.HandlerFunc {
 		if err != nil {
 			response.Fail(c, errno.IllegalRequest)
 			c.Abort()
+			return
 		}
 
 		// Reset request body
