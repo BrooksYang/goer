@@ -57,5 +57,5 @@ api_doc = true
 enabled = true
 api_key = ""
 api_secret = ""
-ip = ["*"]
+ip = []
 ttl = 30

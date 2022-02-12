@@ -1,12 +1,14 @@
 package middleware
 
 import (
+	"encoding/json"
 	"time"
 
 	"goer/global"
 	"goer/global/errno"
 	"goer/pkg/helpers"
 	"goer/pkg/response"
+	"goer/pkg/xhttp"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"
@@ -26,7 +28,15 @@ func CheckOpenRequest() gin.HandlerFunc {
 			return
 		}
 
+		// Get body
 		requestBody, _ := c.GetRawData()
+		var body map[string]interface{}
+		err := json.Unmarshal(requestBody, &body)
+		if err != nil {
+			response.Fail(c, errno.IllegalRequest)
+			c.Abort()
+		}
+
 		logFields := []zap.Field{
 			zap.String("ip", c.ClientIP()),
 			zap.String("method", c.Request.Method),
@@ -36,7 +46,7 @@ func CheckOpenRequest() gin.HandlerFunc {
 		}
 
 		// 1. 时间戳校验
-		timestamp := c.Request.FormValue("timestamp")
+		timestamp := body["timestamp"]
 		if cast.ToInt64(timestamp) < time.Now().Unix()-global.Config.Open.TTL {
 			global.Logger.Open.Warn("timestamp error", logFields...)
 			response.Fail(c, errno.IllegalRequest)
@@ -45,7 +55,7 @@ func CheckOpenRequest() gin.HandlerFunc {
 		}
 
 		// 2. 随机数校验
-		nonce := c.Request.FormValue("nonce")
+		nonce := cast.ToString(body["nonce"])
 		nonceExists := global.Cache.Has(nonce)
 		if nonce == "" || nonceExists {
 			global.Logger.Open.Warn("nonce error", logFields...)
@@ -58,7 +68,7 @@ func CheckOpenRequest() gin.HandlerFunc {
 		global.Cache.Set(nonce, true, time.Second*time.Duration(global.Config.Open.TTL))
 
 		// 3. Api Key 校验（是否有效，ip是否有效）
-		apiKey := c.Request.FormValue("access_key")
+		apiKey := cast.ToString(body["access_key"])
 		if apiKey != global.Config.Open.ApiKey {
 			global.Logger.Open.Warn("api key error", logFields...)
 			response.Fail(c, errno.IllegalRequest)
@@ -67,13 +77,20 @@ func CheckOpenRequest() gin.HandlerFunc {
 		}
 
 		// check ip
-		if helpers.Empty(global.Config.Open.Ip) || helpers.Contains([]string{"", "*"}, global.Config.Open.Ip[0]) {
-			c.Next()
+		if len(global.Config.Open.Ip) > 0 && !helpers.Contains(global.Config.Open.Ip, c.ClientIP()) {
+			global.Logger.Open.Warn("ip error", logFields...)
+			response.Fail(c, errno.IllegalRequest)
+			c.Abort()
 			return
 		}
 
-		if !helpers.Contains(global.Config.Open.Ip, c.ClientIP()) {
-			global.Logger.Open.Warn("ip error", logFields...)
+		// 4. 签名校验
+		sign := cast.ToString(body["sign"])
+		delete(body, "sign")
+		resign := xhttp.Sign(body, global.Config.Open.ApiSecret)
+		if sign == "" || sign != resign {
+			logFields = append(logFields, zap.String("resign", resign))
+			global.Logger.Open.Warn("sign error", logFields...)
 			response.Fail(c, errno.IllegalRequest)
 			c.Abort()
 			return
