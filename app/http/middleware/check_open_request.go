@@ -1,7 +1,9 @@
 package middleware
 
 import (
+	"bytes"
 	"encoding/json"
+	"io/ioutil"
 	"time"
 
 	"goer/global"
@@ -36,6 +38,9 @@ func CheckOpenRequest() gin.HandlerFunc {
 			response.Fail(c, errno.IllegalRequest)
 			c.Abort()
 		}
+
+		// Reset request body
+		c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(requestBody))
 
 		logFields := []zap.Field{
 			zap.String("ip", c.ClientIP()),
