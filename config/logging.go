@@ -3,6 +3,7 @@ package config
 import (
 	"os"
 
+	"github.com/goer-project/goer-utils/core/logger"
 	"go.uber.org/zap"
 )
 
@@ -13,46 +14,36 @@ type Logger struct {
 	Open    *zap.Logger
 }
 
-type Logging struct {
-	Default Channel
-	Request Channel
-	Mail    Channel
-	Open    Channel
-}
-
-type Channel struct {
-	Path    string
-	Level   string
-	Days    int
-	Console bool
-}
-
-func NewLogging() *Logging {
-	return &Logging{
-		Default: Channel{
+func NewLogger() *Logger {
+	return &Logger{
+		Default: logger.NewChannel(&logger.Channel{
 			Path:    logPath("serve.log"),
 			Level:   "debug",
 			Days:    14,
 			Console: true,
-		},
-		Request: Channel{
+			Format:  "json",
+		}),
+		Request: logger.NewChannel(&logger.Channel{
 			Path:    logPath("request.log"),
 			Level:   "debug",
 			Days:    14,
 			Console: false,
-		},
-		Mail: Channel{
+			Format:  "json",
+		}),
+		Mail: logger.NewChannel(&logger.Channel{
 			Path:    logPath("mail.log"),
 			Level:   "debug",
 			Days:    14,
 			Console: true,
-		},
-		Open: Channel{
+			Format:  "json",
+		}),
+		Open: logger.NewChannel(&logger.Channel{
 			Path:    logPath("open.log"),
 			Level:   "debug",
 			Days:    14,
 			Console: true,
-		},
+			Format:  "json",
+		}),
 	}
 }
 
