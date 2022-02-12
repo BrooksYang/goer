@@ -37,7 +37,7 @@ func CheckOpenRequest() gin.HandlerFunc {
 
 		// 1. 时间戳校验
 		timestamp := c.Request.FormValue("timestamp")
-		if cast.ToInt64(timestamp) < time.Now().Unix()-30 {
+		if cast.ToInt64(timestamp) < time.Now().Unix()-global.Config.Open.TTL {
 			global.Logger.Open.Warn("timestamp error", logFields...)
 			response.Fail(c, errno.IllegalRequest)
 			c.Abort()
@@ -46,13 +46,16 @@ func CheckOpenRequest() gin.HandlerFunc {
 
 		// 2. 随机数校验
 		nonce := c.Request.FormValue("nonce")
-		nonceExists := !helpers.Empty(global.Cache.Get(nonce))
+		nonceExists := global.Cache.Has(nonce)
 		if nonce == "" || nonceExists {
 			global.Logger.Open.Warn("nonce error", logFields...)
 			response.Fail(c, errno.IllegalRequest)
 			c.Abort()
 			return
 		}
+
+		// Cache nonce
+		global.Cache.Set(nonce, true, time.Second*time.Duration(global.Config.Open.TTL))
 
 		// 3. Api Key 校验（是否有效，ip是否有效）
 		apiKey := c.Request.FormValue("access_key")

@@ -58,3 +58,4 @@ enabled = true
 api_key = ""
 api_secret = ""
 ip = ["*"]
+ttl = 30
