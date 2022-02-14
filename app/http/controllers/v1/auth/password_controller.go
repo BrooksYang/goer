@@ -3,7 +3,6 @@ package auth
 import (
 	v1 "goer/app/http/controllers/v1"
 	authRequest "goer/app/http/requests/auth"
-	"goer/app/models/user"
 	"goer/global"
 	"goer/global/errno"
 	"goer/pkg/auth"
@@ -18,8 +17,8 @@ type PasswordController struct {
 	v1.BaseController
 }
 
+// UpdatePassword
 // @Summary      Update password
-// @Description  Update user password
 // @Security     Bearer
 // @Tags         Auth
 // @Accept       multipart/form-data
@@ -39,7 +38,7 @@ func (a PasswordController) UpdatePassword(c *gin.Context) {
 	authUser := auth.User(c)
 
 	// Check password
-	res := user.CheckPassword(authUser, request.OldPassword)
+	res := authUser.CheckPassword(request.OldPassword)
 	if !res {
 		response.Fail(c, errno.InvalidPassword)
 		return

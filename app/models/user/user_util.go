@@ -8,15 +8,13 @@ import (
 	"gorm.io/gorm"
 )
 
-// Generate uid
 func GenerateUid() string {
 	length := global.Config.Common.UidLength
 
 	return helpers.RandomNumber(length)
 }
 
-// Check password
-func CheckPassword(user User, password string) bool {
+func (user *User) CheckPassword(password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 	if err != nil {
 		return false
@@ -25,8 +23,7 @@ func CheckPassword(user User, password string) bool {
 	return true
 }
 
-// Check pay password
-func CheckPayPassword(user User, payPassword string) bool {
+func (user *User) CheckPayPassword(payPassword string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(user.PayPassword), []byte(payPassword))
 	if err != nil {
 		return false
@@ -35,8 +32,11 @@ func CheckPayPassword(user User, payPassword string) bool {
 	return true
 }
 
-// Check google code
-func CheckGoogleCode(user User, googleCode string) bool {
+func (user *User) HasPayPassword() bool {
+	return !helpers.Empty(user.Password)
+}
+
+func (user *User) CheckGoogleCode(googleCode string) bool {
 	if user.GoogleStatus != string(GoogleStatusEnabled) {
 		return true
 	}
@@ -45,19 +45,17 @@ func CheckGoogleCode(user User, googleCode string) bool {
 	return true
 }
 
-// Check 2fa
-func Check2FA(user User, payPassword string, googleCode string) bool {
+func (user *User) Check2FA(payPassword string, googleCode string) bool {
 	// Check pay password
-	if !CheckPayPassword(user, payPassword) {
+	if !user.CheckPayPassword(payPassword) {
 		return false
 	}
 
 	// Check google code
-	return CheckGoogleCode(user, googleCode)
+	return user.CheckGoogleCode(googleCode)
 }
 
-// Check if account exists
-func AccountExists(user User) bool {
+func (user *User) AccountExists() bool {
 	var id int
 	if user.Email != "" {
 		global.DB.Model(&user).Where("email=?", user.Email).Select("ID").First(&id)
@@ -99,7 +97,7 @@ func SearchIsValid(isValid string) func(db *gorm.DB) *gorm.DB {
 	}
 }
 
-func GetChildrenIdSubQuery(user User, account string) *gorm.DB {
+func (user *User) GetChildrenIdSubQuery(account string) *gorm.DB {
 	subQuery := global.DB.Model(&User{}).
 		Select("id").
 		Where("pid", user.ID).
@@ -108,7 +106,7 @@ func GetChildrenIdSubQuery(user User, account string) *gorm.DB {
 	return subQuery
 }
 
-func GetChild(user User, account string) User {
+func (user *User) GetChild(account string) User {
 	var child User
 
 	global.DB.Model(&User{}).

@@ -19,8 +19,8 @@ type AuthController struct {
 	v1.BaseController
 }
 
+// Register
 // @Summary      Register
-// @Description  Register new user
 // @Tags         Auth
 // @Accept       multipart/form-data
 // @Produce      json
@@ -53,7 +53,7 @@ func (a *AuthController) Register(c *gin.Context) {
 	}
 
 	// Check if account exists
-	if user.AccountExists(newUser) {
+	if newUser.AccountExists() {
 		response.Fail(c, errno.AccountExists)
 		return
 	}
@@ -100,8 +100,8 @@ func (a *AuthController) Register(c *gin.Context) {
 	response.Data(c, token)
 }
 
+// Login
 // @Summary      Login
-// @Description  Login
 // @Tags         Auth
 // @Accept       multipart/form-data
 // @Produce      json
@@ -132,7 +132,7 @@ func (a AuthController) Login(c *gin.Context) {
 	}
 
 	// check password
-	res := user.CheckPassword(authUser, request.Password)
+	res := authUser.CheckPassword(request.Password)
 	if !res {
 		response.Fail(c, errno.InvalidAccount)
 		return
@@ -148,6 +148,7 @@ func (a AuthController) Login(c *gin.Context) {
 	response.Data(c, token)
 }
 
+// Profile
 // @Summary      Profile
 // @Description  Get user profile
 // @Security     Bearer
@@ -163,6 +164,7 @@ func (a AuthController) Profile(c *gin.Context) {
 	response.Data(c, authUser)
 }
 
+// UpdateProfile
 // @Summary      Update profile
 // @Description  Update user profile
 // @Security     Bearer

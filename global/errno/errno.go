@@ -30,13 +30,14 @@ var (
 	NetworkCongested    = &response.Errno{Code: 50002, Msg: "Network Congested"}
 
 	// User
-	AccountExists      = &response.Errno{Code: 10101, Msg: "Account exists"}
-	AccountNotFound    = &response.Errno{Code: 10102, Msg: "Account not found"}
-	InvalidAccount     = &response.Errno{Code: 10103, Msg: "Invalid account"}
-	AccountLocked      = &response.Errno{Code: 10104, Msg: "Your account has been locked"}
-	InvalidReferrer    = &response.Errno{Code: 10105, Msg: "Invalid Referrer"}
-	InvalidPassword    = &response.Errno{Code: 10106, Msg: "Invalid password"}
-	InvalidGoogleCode  = &response.Errno{Code: 10107, Msg: "Invalid google code"}
-	NeedPayPassword    = &response.Errno{Code: 10108, Msg: "Need pay password"}
-	InvalidPayPassword = &response.Errno{Code: 10109, Msg: "Invalid pay password"}
+	AccountExists         = &response.Errno{Code: 10101, Msg: "Account exists"}
+	AccountNotFound       = &response.Errno{Code: 10102, Msg: "Account not found"}
+	InvalidAccount        = &response.Errno{Code: 10103, Msg: "Invalid account"}
+	AccountLocked         = &response.Errno{Code: 10104, Msg: "Your account has been locked"}
+	InvalidReferrer       = &response.Errno{Code: 10105, Msg: "Invalid Referrer"}
+	InvalidPassword       = &response.Errno{Code: 10106, Msg: "Invalid password"}
+	InvalidGoogleCode     = &response.Errno{Code: 10107, Msg: "Invalid google code"}
+	NeedPayPassword       = &response.Errno{Code: 10108, Msg: "Need pay password"}
+	InvalidPayPassword    = &response.Errno{Code: 10109, Msg: "Invalid pay password"}
+	AlreadyHasPayPassword = &response.Errno{Code: 10110, Msg: "Already has pay password"}
 )
