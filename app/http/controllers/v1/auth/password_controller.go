@@ -26,7 +26,7 @@ type PasswordController struct {
 // @Param     old_password           formData  string  true  "old password"
 // @Param     password               formData  string  true  "new password"
 // @Param     password_confirmation  formData  string  true  "new password confirmation"
-// @Success   200                    {string}  string  "OK"
+// @Success   200                        {string}  string  "OK"
 // @Router    /v1/auth/password [PATCH]
 func (a PasswordController) UpdatePassword(c *gin.Context) {
 	var request authRequest.PasswordRequest
@@ -48,6 +48,39 @@ func (a PasswordController) UpdatePassword(c *gin.Context) {
 	password, _ := bcrypt.GenerateFromPassword([]byte(request.Password), bcrypt.DefaultCost)
 	authUser.Password = string(password)
 	global.DB.Select("Password").Save(&authUser)
+
+	response.Success(c)
+}
+
+// SetPayPassword
+// @Summary   Set pay password
+// @Security  Bearer
+// @Tags      Auth
+// @Accept    multipart/form-data
+// @Produce   json
+// @Param     pay_password               formData  string  true  "Pay password"
+// @Param     pay_password_confirmation  formData  string  true  "Pay password confirmation"
+// @Success   200                    {string}  string  "OK"
+// @Router    /v1/auth/payPassword [POST]
+func (a PasswordController) SetPayPassword(c *gin.Context) {
+	var request authRequest.PayPasswordRequest
+	if ok := http.Validate(c, &request); !ok {
+		return
+	}
+
+	// Find user
+	authUser := auth.User(c)
+
+	// Check password
+	if authUser.HasPayPassword() {
+		response.Fail(c, errno.PayPasswordExists)
+		return
+	}
+
+	// Update password
+	payPassword, _ := bcrypt.GenerateFromPassword([]byte(request.PayPassword), bcrypt.DefaultCost)
+	authUser.PayPassword = string(payPassword)
+	global.DB.Select("PayPassword").Save(&authUser)
 
 	response.Success(c)
 }

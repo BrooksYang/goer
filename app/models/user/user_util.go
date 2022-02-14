@@ -33,7 +33,7 @@ func (user *User) CheckPayPassword(payPassword string) bool {
 }
 
 func (user *User) HasPayPassword() bool {
-	return !helpers.Empty(user.Password)
+	return !helpers.Empty(user.PayPassword)
 }
 
 func (user *User) CheckGoogleCode(googleCode string) bool {
