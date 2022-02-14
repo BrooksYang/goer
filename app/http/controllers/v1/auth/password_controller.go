@@ -18,16 +18,16 @@ type PasswordController struct {
 }
 
 // UpdatePassword
-// @Summary      Update password
-// @Security     Bearer
-// @Tags         Auth
-// @Accept       multipart/form-data
-// @Produce      json
-// @Param        old_password           formData  string  true  "old password"
-// @Param        password               formData  string  true  "new password"
-// @Param        password_confirmation  formData  string  true  "new password confirmation"
-// @Success      200                    {string}  string  "OK"
-// @Router       /v1/auth/password [PATCH]
+// @Summary   Update password
+// @Security  Bearer
+// @Tags      Auth
+// @Accept    multipart/form-data
+// @Produce   json
+// @Param     old_password           formData  string  true  "old password"
+// @Param     password               formData  string  true  "new password"
+// @Param     password_confirmation  formData  string  true  "new password confirmation"
+// @Success   200                    {string}  string  "OK"
+// @Router    /v1/auth/password [PATCH]
 func (a PasswordController) UpdatePassword(c *gin.Context) {
 	var request authRequest.PasswordRequest
 	if ok := http.Validate(c, &request); !ok {

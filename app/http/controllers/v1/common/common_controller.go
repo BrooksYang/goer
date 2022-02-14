@@ -11,6 +11,7 @@ type CommonController struct {
 	v1.BaseController
 }
 
+// Ping
 // @BasePath  /
 // PingExample godoc
 // @Summary   ping server

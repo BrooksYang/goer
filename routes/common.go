@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Map demo routes
 func MapCommonRoutes(r *gin.Engine) {
 
 	// v1 group

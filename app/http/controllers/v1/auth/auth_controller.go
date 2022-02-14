@@ -20,18 +20,18 @@ type AuthController struct {
 }
 
 // Register
-// @Summary      Register
-// @Tags         Auth
-// @Accept       multipart/form-data
-// @Produce      json
-// @Param        type         formData  integer        true   "Register type, 1-email, 2-phone"
-// @Param        name         formData  string         false  "Name"
-// @Param        email        formData  string         false  "Email"
-// @Param        phone        formData  string         false  "Phone"
-// @Param        password     formData  string         true   "Password"
-// @Param        referral_id  formData  int            false  "Referral id"
-// @Success      200          {object}  auth.JwtToken  "Register"
-// @Router       /v1/auth/register [post]
+// @Summary  Register
+// @Tags     Auth
+// @Accept   multipart/form-data
+// @Produce  json
+// @Param    type         formData  integer        true   "Register type, 1-email, 2-phone"
+// @Param    name         formData  string         false  "Name"
+// @Param    email        formData  string         false  "Email"
+// @Param    phone        formData  string         false  "Phone"
+// @Param    password     formData  string         true   "Password"
+// @Param    referral_id  formData  int            false  "Referral id"
+// @Success  200          {object}  auth.JwtToken  "Register"
+// @Router   /v1/auth/register [post]
 func (a *AuthController) Register(c *gin.Context) {
 	var request authRequest.RegisterRequest
 	if ok := http.Validate(c, &request); !ok {
@@ -101,14 +101,14 @@ func (a *AuthController) Register(c *gin.Context) {
 }
 
 // Login
-// @Summary      Login
-// @Tags         Auth
-// @Accept       multipart/form-data
-// @Produce      json
-// @Param        account   formData  string         true  "Account"
-// @Param        password  formData  string         true  "Password"
-// @Success      200       {object}  auth.JwtToken  "login"
-// @Router       /v1/auth/login [post]
+// @Summary  Login
+// @Tags     Auth
+// @Accept   multipart/form-data
+// @Produce  json
+// @Param    account   formData  string         true  "Account"
+// @Param    password  formData  string         true  "Password"
+// @Success  200       {object}  auth.JwtToken  "login"
+// @Router   /v1/auth/login [post]
 func (a AuthController) Login(c *gin.Context) {
 	var request authRequest.LoginRequest
 	if ok := http.Validate(c, &request); !ok {

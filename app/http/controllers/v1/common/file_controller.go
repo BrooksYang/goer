@@ -16,14 +16,15 @@ type FileController struct {
 	v1.BaseController
 }
 
-// @Summary      Upload image
-// @Security     Bearer
-// @Tags         Common
-// @Accept       multipart/form-data
-// @Produce      json
-// @Param        image  formData  file    true  "image"
-// @Success      200    {string}  string  "OK"
-// @Router       /v1/common/upload [POST]
+// Upload
+// @Summary   Upload image
+// @Security  Bearer
+// @Tags      Common
+// @Accept    multipart/form-data
+// @Produce   json
+// @Param     image  formData  file    true  "image"
+// @Success   200    {string}  string  "OK"
+// @Router    /v1/common/upload [POST]
 func (*FileController) Upload(c *gin.Context) {
 	var request commonRequest.UploadRequest
 	if ok := http.Validate(c, &request); !ok {
