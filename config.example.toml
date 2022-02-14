@@ -59,3 +59,8 @@ api_key = ""
 api_secret = ""
 ip = []
 ttl = 30
+
+[code]
+# ttl minutes
+length = 6
+ttl = 5

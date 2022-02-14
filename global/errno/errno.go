@@ -28,6 +28,7 @@ var (
 	// System
 	InternalServerError = &response.Errno{Code: 50001, Msg: "Server Error"}
 	NetworkCongested    = &response.Errno{Code: 50002, Msg: "Network Congested"}
+	ServiceMaintenance  = &response.Errno{Code: 50003, Msg: "Service maintenance"}
 
 	// User
 	AccountExists      = &response.Errno{Code: 10101, Msg: "Account exists"}
