@@ -60,7 +60,7 @@ func (a PasswordController) UpdatePassword(c *gin.Context) {
 // @Produce   json
 // @Param     pay_password               formData  string  true  "Pay password"
 // @Param     pay_password_confirmation  formData  string  true  "Pay password confirmation"
-// @Success   200                    {string}  string  "OK"
+// @Success   200                        {string}  string  "OK"
 // @Router    /v1/auth/payPassword [POST]
 func (a PasswordController) SetPayPassword(c *gin.Context) {
 	var request authRequest.PayPasswordRequest
@@ -71,13 +71,47 @@ func (a PasswordController) SetPayPassword(c *gin.Context) {
 	// Find user
 	authUser := auth.User(c)
 
-	// Check password
+	// Has pay password
 	if authUser.HasPayPassword() {
 		response.Fail(c, errno.PayPasswordExists)
 		return
 	}
 
 	// Update password
+	payPassword, _ := bcrypt.GenerateFromPassword([]byte(request.PayPassword), bcrypt.DefaultCost)
+	authUser.PayPassword = string(payPassword)
+	global.DB.Select("PayPassword").Save(&authUser)
+
+	response.Success(c)
+}
+
+// ResetPayPassword
+// @Summary   Reset pay password
+// @Security  Bearer
+// @Tags      Auth
+// @Accept    multipart/form-data
+// @Produce   json
+// @Param     password                   formData  string  true  "Password"
+// @Param     pay_password               formData  string  true  "Pay password"
+// @Param     pay_password_confirmation  formData  string  true  "Pay password confirmation"
+// @Success   200                    {string}  string  "OK"
+// @Router    /v1/auth/payPassword/reset [POST]
+func (a PasswordController) ResetPayPassword(c *gin.Context) {
+	var request authRequest.PayPasswordReset
+	if ok := http.Validate(c, &request); !ok {
+		return
+	}
+
+	// Find user
+	authUser := auth.User(c)
+
+	// Check password
+	if !authUser.CheckPassword(request.Password) {
+		response.Fail(c, errno.InvalidPassword)
+		return
+	}
+
+	// Update pay password
 	payPassword, _ := bcrypt.GenerateFromPassword([]byte(request.PayPassword), bcrypt.DefaultCost)
 	authUser.PayPassword = string(payPassword)
 	global.DB.Select("PayPassword").Save(&authUser)

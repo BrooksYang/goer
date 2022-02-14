@@ -46,5 +46,8 @@ func MapApiRoutes(r *gin.Engine) {
 
 		// Set pay password
 		v1.POST("auth/payPassword", passwordController.SetPayPassword)
+
+		// Reset pay password
+		v1.POST("auth/payPassword/reset", passwordController.ResetPayPassword)
 	}
 }
