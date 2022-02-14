@@ -29,7 +29,7 @@ func MapApiRoutes(r *gin.Engine) {
 	notificationController := auth.NotificationController{}
 
 	// Send email code
-	v1.POST("auth/code/email", middleware.LimitIP("1-M"), notificationController.SendEmailCode)
+	v1.POST("auth/code/email", middleware.LimitPath("1-M"), notificationController.SendEmailCode)
 
 	// Register
 	v1.POST("auth/register", authController.Register)

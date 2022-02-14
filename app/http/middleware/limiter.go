@@ -16,7 +16,6 @@ import (
 	redisStore "github.com/ulule/limiter/v3/drivers/store/redis"
 )
 
-// Limit by ip
 func LimitIP(limit string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		key := resolveRequestSignature(c.ClientIP())
@@ -28,11 +27,10 @@ func LimitIP(limit string) gin.HandlerFunc {
 	}
 }
 
-// Limit by ip and url
+// LimitPath Limit ip and url
 func LimitPath(limit string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		key := resolveRequestSignature(c.FullPath() + "|" + c.ClientIP())
-		log.Println(key)
 		if ok := handleLimit(c, key, limit); !ok {
 			return
 		}
@@ -41,7 +39,6 @@ func LimitPath(limit string) gin.HandlerFunc {
 	}
 }
 
-// Limit request method
 func LimitMethod(limit string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// Skip GET
@@ -51,7 +48,7 @@ func LimitMethod(limit string) gin.HandlerFunc {
 			return
 		}
 
-		key := resolveRequestSignature(c.FullPath() + "|" + c.ClientIP())
+		key := resolveRequestSignature(c.ClientIP())
 		if ok := handleLimit(c, key, limit); !ok {
 			return
 		}
