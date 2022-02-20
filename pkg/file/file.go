@@ -89,7 +89,7 @@ func randomNameFromUploadFile(file *multipart.FileHeader) string {
 func getResizeRatio(file *multipart.FileHeader) float64 {
 	// < 100k
 	if file.Size < 1024*100 {
-		return 0
+		return 1
 	}
 
 	// 100k - 300k
