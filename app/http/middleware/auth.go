@@ -1,7 +1,8 @@
 package middleware
 
 import (
-	"goer/global/errno"
+	"goer/app/models/user"
+	"goer/global"
 	"goer/pkg/auth"
 	"goer/pkg/response"
 
@@ -10,20 +11,32 @@ import (
 
 func Auth() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Get auth user
-		userInfo := auth.User(c)
-		if userInfo.ID == 0 {
-			response.Fail(c, errno.InvalidToken)
+
+		claims, err := auth.NewJWT().ParseToken(c)
+		if err != nil {
+			response.Unauthorized(c)
 			c.Abort()
 			return
 		}
 
-		// account invalid
-		if !userInfo.IsValid {
-			response.Fail(c, errno.AccountLocked)
+		if claims.Guard != "" {
+			response.Unauthorized(c)
 			c.Abort()
 			return
 		}
+
+		var userInfo user.User
+		global.DB.First(&userInfo, claims.ID)
+
+		if userInfo.ID == 0 {
+			response.Unauthorized(c)
+			c.Abort()
+			return
+		}
+
+		// Set user info to gin.context
+		c.Set("auth.user_id", userInfo.ID)
+		c.Set("auth.user", userInfo)
 
 		c.Next()
 	}

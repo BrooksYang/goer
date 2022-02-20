@@ -2,10 +2,12 @@ package auth
 
 import (
 	"errors"
+	"strings"
 	"time"
 
 	"goer/global"
 
+	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
 )
 
@@ -19,17 +21,28 @@ var (
 type JWT struct {
 	jwtSecret []byte
 	jwtTtl    int64
+	guard     string
 }
 
 func NewJWT() *JWT {
 	return &JWT{
 		[]byte(global.Config.JWT.SecretKey),
 		global.Config.JWT.TTL,
+		"",
+	}
+}
+
+func NewJWTGuard(guard string) *JWT {
+	return &JWT{
+		[]byte(global.Config.JWT.SecretKey),
+		global.Config.JWT.TTL,
+		guard,
 	}
 }
 
 type CustomClaims struct {
-	ID uint64 `json:"id"`
+	ID    uint64 `json:"id"`
+	Guard string `json:"guard"`
 	jwt.StandardClaims
 }
 
@@ -42,6 +55,7 @@ func (j *JWT) CreateToken(id uint64) (JwtToken, error) {
 	// Create the claims
 	claims := CustomClaims{
 		id,
+		j.guard,
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Unix() + j.jwtTtl,
 		},
@@ -62,7 +76,11 @@ func (j *JWT) CreateToken(id uint64) (JwtToken, error) {
 	return jt, err
 }
 
-func (j JWT) ParseToken(tokenString string) (*CustomClaims, error) {
+func (j JWT) ParseToken(c *gin.Context) (*CustomClaims, error) {
+	// Get token
+	tokenString := GetToken(c)
+
+	// Parse token
 	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return j.jwtSecret, nil
 	})
@@ -90,4 +108,16 @@ func (j JWT) ParseToken(tokenString string) (*CustomClaims, error) {
 	} else {
 		return nil, TokenInvalid
 	}
+}
+
+// GetToken Get Authorization Bearer Token
+func GetToken(c *gin.Context) string {
+	bearToken := c.Request.Header.Get("Authorization")
+	strArr := strings.Split(bearToken, " ")
+
+	if len(strArr) == 2 {
+		return strArr[1]
+	}
+
+	return ""
 }
