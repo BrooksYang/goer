@@ -59,6 +59,18 @@ func (cs *CacheService) Forever(key string, value string) {
 	cs.Store.Set(key, value, 0)
 }
 
+func (cs *CacheService) Remember(key string, expireTime time.Duration, callback func() interface{}) interface{} {
+	data := cs.Get(key)
+	if data != nil {
+		return data
+	}
+
+	data = callback()
+	cs.Set(key, data, expireTime)
+
+	return data
+}
+
 func (cs *CacheService) Flush() {
 	cs.Store.Flush()
 }
