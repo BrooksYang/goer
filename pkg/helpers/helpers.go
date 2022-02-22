@@ -6,7 +6,10 @@ import (
 	"io"
 	mathRand "math/rand"
 	"reflect"
+	"strconv"
 	"time"
+
+	"github.com/spf13/cast"
 )
 
 func Empty(val interface{}) bool {
@@ -48,6 +51,16 @@ func RandomNumber(length int) string {
 		b[i] = table[int(b[i])%len(table)]
 	}
 	return string(b)
+}
+
+func RandomNumberRange(min float64, max float64, precision int) float64 {
+	mathRand.Seed(time.Now().UnixNano())
+
+	data := min + mathRand.Float64()*(max-min)
+
+	value := strconv.FormatFloat(data, 'f', precision, 64)
+
+	return cast.ToFloat64(value)
 }
 
 func FirstElement(args []string) string {
