@@ -1,10 +1,10 @@
 package helpers
 
 import (
-	"crypto/rand"
+	cryptoRand "crypto/rand"
 	"fmt"
 	"io"
-	mathRand "math/rand"
+	"math/rand"
 	"reflect"
 	"strconv"
 	"time"
@@ -43,7 +43,7 @@ func MicrosecondsStr(elapsed time.Duration) string {
 func RandomNumber(length int) string {
 	table := [...]byte{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
 	b := make([]byte, length)
-	n, err := io.ReadAtLeast(rand.Reader, b, length)
+	n, err := io.ReadAtLeast(cryptoRand.Reader, b, length)
 	if n != length {
 		panic(err)
 	}
@@ -54,13 +54,35 @@ func RandomNumber(length int) string {
 }
 
 func RandomNumberRange(min float64, max float64, precision int) float64 {
-	mathRand.Seed(time.Now().UnixNano())
+	rand.Seed(time.Now().UnixNano())
 
-	data := min + mathRand.Float64()*(max-min)
+	data := min + rand.Float64()*(max-min)
 
 	value := strconv.FormatFloat(data, 'f', precision, 64)
 
 	return cast.ToFloat64(value)
+}
+
+func RandomWeightedIndex(weights []float32) int {
+	if len(weights) == 1 {
+		return 0
+	}
+	var sum float32 = 0.0
+	for _, w := range weights {
+		sum += w
+	}
+
+	rand.Seed(time.Now().UnixNano())
+	r := rand.Float32() * sum
+	var t float32 = 0.0
+	for i, w := range weights {
+		t += w
+		if t > r {
+			return i
+		}
+	}
+
+	return len(weights) - 1
 }
 
 func FirstElement(args []string) string {
@@ -72,11 +94,11 @@ func FirstElement(args []string) string {
 }
 
 func RandomString(length int) string {
-	mathRand.Seed(time.Now().UnixNano())
+	rand.Seed(time.Now().UnixNano())
 	letters := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	b := make([]byte, length)
 	for i := range b {
-		b[i] = letters[mathRand.Intn(len(letters))]
+		b[i] = letters[rand.Intn(len(letters))]
 	}
 
 	return string(b)

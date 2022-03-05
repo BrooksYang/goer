@@ -8,6 +8,7 @@ import (
 )
 
 type Logger struct {
+	Console *zap.Logger
 	Default *zap.Logger
 	Request *zap.Logger
 	Mail    *zap.Logger
@@ -16,6 +17,13 @@ type Logger struct {
 
 func NewLogger() *Logger {
 	return &Logger{
+		Console: logger.NewChannel(&logger.Channel{
+			Path:    "/dev/null",
+			Level:   "debug",
+			Days:    1,
+			Console: true,
+			Format:  "console",
+		}),
 		Default: logger.NewChannel(&logger.Channel{
 			Path:    logPath("serve.log"),
 			Level:   "debug",
