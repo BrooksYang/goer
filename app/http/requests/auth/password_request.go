@@ -1,6 +1,6 @@
 package authRequest
 
-import "goer/pkg/http"
+import "goer/pkg/form"
 
 type PasswordRequest struct {
 	OldPassword          string `form:"old_password" binding:"required,min=6"`
@@ -8,8 +8,8 @@ type PasswordRequest struct {
 	PasswordConfirmation string `form:"password_confirmation" binding:"eqfield=Password"`
 }
 
-func (req PasswordRequest) Messages() http.ValidatorMessages {
-	return http.ValidatorMessages{
+func (req PasswordRequest) Messages() form.ValidatorMessages {
+	return form.ValidatorMessages{
 		"OldPassword.required":         "Old password is required",
 		"OldPassword.min":              "Old password must be at least 6 characters",
 		"Password.required":            "Password is required",

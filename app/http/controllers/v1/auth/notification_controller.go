@@ -8,8 +8,8 @@ import (
 	authRequest "goer/app/http/requests/auth"
 	"goer/global"
 	"goer/global/errno"
+	"goer/pkg/form"
 	"goer/pkg/helpers"
-	"goer/pkg/http"
 	"goer/pkg/mail"
 	"goer/pkg/response"
 
@@ -30,7 +30,7 @@ type NotificationController struct {
 // @Router   /v1/auth/code/email [POST]
 func (*NotificationController) SendEmailCode(c *gin.Context) {
 	var request authRequest.SendEmailRequest
-	if ok := http.Validate(c, &request); !ok {
+	if ok := form.Validate(c, &request); !ok {
 		return
 	}
 

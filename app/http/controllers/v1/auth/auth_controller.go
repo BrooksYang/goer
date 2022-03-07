@@ -7,7 +7,7 @@ import (
 	"goer/global"
 	"goer/global/errno"
 	"goer/pkg/auth"
-	"goer/pkg/http"
+	"goer/pkg/form"
 	"goer/pkg/response"
 
 	"github.com/gin-gonic/gin"
@@ -34,7 +34,7 @@ type AuthController struct {
 // @Router   /v1/auth/register [post]
 func (a *AuthController) Register(c *gin.Context) {
 	var request authRequest.RegisterRequest
-	if ok := http.Validate(c, &request); !ok {
+	if ok := form.Validate(c, &request); !ok {
 		return
 	}
 
@@ -111,7 +111,7 @@ func (a *AuthController) Register(c *gin.Context) {
 // @Router   /v1/auth/login [post]
 func (a AuthController) Login(c *gin.Context) {
 	var request authRequest.LoginRequest
-	if ok := http.Validate(c, &request); !ok {
+	if ok := form.Validate(c, &request); !ok {
 		return
 	}
 
@@ -179,7 +179,7 @@ func (a AuthController) Profile(c *gin.Context) {
 // @Router       /v1/auth/profile [PATCH]
 func (a AuthController) UpdateProfile(c *gin.Context) {
 	var request authRequest.ProfileRequest
-	if ok := http.Validate(c, &request); !ok {
+	if ok := form.Validate(c, &request); !ok {
 		return
 	}
 

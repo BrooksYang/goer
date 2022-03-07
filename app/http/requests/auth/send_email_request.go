@@ -1,13 +1,13 @@
 package authRequest
 
-import "goer/pkg/http"
+import "goer/pkg/form"
 
 type SendEmailRequest struct {
 	Email string `form:"email" binding:"required,email"`
 }
 
-func (req SendEmailRequest) Messages() http.ValidatorMessages {
-	return http.ValidatorMessages{
+func (req SendEmailRequest) Messages() form.ValidatorMessages {
+	return form.ValidatorMessages{
 		"Email.required": "Email is required",
 		"Email.email":    "Email is invalid",
 	}

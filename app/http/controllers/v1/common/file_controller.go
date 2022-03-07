@@ -6,7 +6,7 @@ import (
 	"goer/app/rules"
 	"goer/global/errno"
 	"goer/pkg/file"
-	"goer/pkg/http"
+	"goer/pkg/form"
 	"goer/pkg/response"
 
 	"github.com/gin-gonic/gin"
@@ -27,7 +27,7 @@ type FileController struct {
 // @Router    /v1/common/upload [POST]
 func (*FileController) Upload(c *gin.Context) {
 	var request commonRequest.UploadRequest
-	if ok := http.Validate(c, &request); !ok {
+	if ok := form.Validate(c, &request); !ok {
 		return
 	}
 	if ok := rules.ValidateImage(c, request.Image); !ok {

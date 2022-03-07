@@ -5,7 +5,7 @@ import (
 
 	"goer/global/errno"
 	"goer/pkg/file"
-	v "goer/pkg/http"
+	"goer/pkg/form"
 	"goer/pkg/response"
 
 	"github.com/gin-gonic/gin"
@@ -18,8 +18,8 @@ type Image struct {
 	Size int32  `validate:"required,gt=0,lte=5242880"`
 }
 
-func (req Image) Messages() v.ValidatorMessages {
-	return v.ValidatorMessages{
+func (req Image) Messages() form.ValidatorMessages {
+	return form.ValidatorMessages{
 		"Mime.required": "Image is required",
 		"Mime.oneof":    "Image only support png, jpg, jpeg",
 		"Size.lte":      "The image must not be greater than 5MB",
@@ -46,7 +46,7 @@ func ValidateImage(c *gin.Context, header *multipart.FileHeader) bool {
 		return true
 	}
 
-	response.FailWithMsg(c, errno.ValidationError.Code, v.ParseError(img, err))
+	response.FailWithMsg(c, errno.ValidationError.Code, form.ParseError(img, err))
 
 	return false
 }

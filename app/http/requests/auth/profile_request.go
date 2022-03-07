@@ -1,6 +1,6 @@
 package authRequest
 
-import "goer/pkg/http"
+import "goer/pkg/form"
 
 type ProfileRequest struct {
 	Username string `form:"username" binding:"alphanum"`
@@ -9,8 +9,8 @@ type ProfileRequest struct {
 	Avatar   string `form:"avatar"`
 }
 
-func (req ProfileRequest) Messages() http.ValidatorMessages {
-	return http.ValidatorMessages{
+func (req ProfileRequest) Messages() form.ValidatorMessages {
+	return form.ValidatorMessages{
 		"Username.alphanum": "Username must only contain letters and numbers",
 		"Gender.oneof":      "The Gender is invalid",
 		"Age.number":        "The age must be a number",

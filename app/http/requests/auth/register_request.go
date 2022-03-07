@@ -1,6 +1,6 @@
 package authRequest
 
-import "goer/pkg/http"
+import "goer/pkg/form"
 
 type RegisterRequest struct {
 	Type       int    `form:"type" binding:"required,oneof=1 2"` // 1-邮箱注册，2-手机注册
@@ -11,8 +11,8 @@ type RegisterRequest struct {
 	ReferralId uint   `form:"referral_id"`
 }
 
-func (req RegisterRequest) Messages() http.ValidatorMessages {
-	return http.ValidatorMessages{
+func (req RegisterRequest) Messages() form.ValidatorMessages {
+	return form.ValidatorMessages{
 		"Type.required":       "Type is required",
 		"Type.oneof":          "Type is invalid",
 		"Email.required_if":   "Email is required",

@@ -1,6 +1,6 @@
 package authRequest
 
-import "goer/pkg/http"
+import "goer/pkg/form"
 
 type PayPasswordReset struct {
 	Password                string `form:"password" json:"password" binding:"required"`
@@ -8,8 +8,8 @@ type PayPasswordReset struct {
 	PayPasswordConfirmation string `form:"pay_password_confirmation" json:"pay_password_confirmation" binding:"eqfield=PayPassword"`
 }
 
-func (req PayPasswordReset) Messages() http.ValidatorMessages {
-	return http.ValidatorMessages{
+func (req PayPasswordReset) Messages() form.ValidatorMessages {
+	return form.ValidatorMessages{
 		"Password.required":               "Password is required",
 		"PayPassword.required":            "The pay password is required",
 		"PayPassword.min":                 "The pay password must be at least 6 characters",

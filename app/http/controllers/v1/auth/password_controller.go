@@ -6,7 +6,7 @@ import (
 	"goer/global"
 	"goer/global/errno"
 	"goer/pkg/auth"
-	"goer/pkg/http"
+	"goer/pkg/form"
 	"goer/pkg/response"
 
 	"github.com/gin-gonic/gin"
@@ -30,7 +30,7 @@ type PasswordController struct {
 // @Router    /v1/auth/password [PATCH]
 func (a PasswordController) UpdatePassword(c *gin.Context) {
 	var request authRequest.PasswordRequest
-	if ok := http.Validate(c, &request); !ok {
+	if ok := form.Validate(c, &request); !ok {
 		return
 	}
 
@@ -64,7 +64,7 @@ func (a PasswordController) UpdatePassword(c *gin.Context) {
 // @Router    /v1/auth/payPassword [POST]
 func (a PasswordController) SetPayPassword(c *gin.Context) {
 	var request authRequest.PayPasswordRequest
-	if ok := http.Validate(c, &request); !ok {
+	if ok := form.Validate(c, &request); !ok {
 		return
 	}
 
@@ -98,7 +98,7 @@ func (a PasswordController) SetPayPassword(c *gin.Context) {
 // @Router    /v1/auth/payPassword/reset [POST]
 func (a PasswordController) ResetPayPassword(c *gin.Context) {
 	var request authRequest.PayPasswordReset
-	if ok := http.Validate(c, &request); !ok {
+	if ok := form.Validate(c, &request); !ok {
 		return
 	}
 
