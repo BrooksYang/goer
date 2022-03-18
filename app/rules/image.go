@@ -29,7 +29,7 @@ func (req Image) Messages() form.ValidatorMessages {
 func ValidateImage(c *gin.Context, header *multipart.FileHeader) bool {
 
 	fileContent, err := header.Open()
-	mime, err := file.GetFileContentType(fileContent)
+	mime, err := file.GetContentType(fileContent)
 	if err != nil {
 		response.BadRequest(c, err)
 		return false

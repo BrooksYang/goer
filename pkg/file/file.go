@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"log"
 	"mime/multipart"
-	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -114,21 +113,4 @@ func getResizeRatio(file *multipart.FileHeader) float64 {
 
 	// > 5M
 	return 0.1
-}
-
-func GetFileContentType(out multipart.File) (string, error) {
-
-	// Only the first 512 bytes are used to sniff the content type.
-	buffer := make([]byte, 512)
-
-	_, err := out.Read(buffer)
-	if err != nil {
-		return "", err
-	}
-
-	// Use the net/http package's handy DectectContentType function. Always returns a valid
-	// content-type by returning "application/octet-stream" if no others seemed to match.
-	contentType := http.DetectContentType(buffer)
-
-	return contentType, nil
 }
