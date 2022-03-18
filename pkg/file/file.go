@@ -3,14 +3,12 @@ package file
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"mime/multipart"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
 
-	"github.com/disintegration/imaging"
 	"github.com/gin-gonic/gin"
 	"github.com/goer-project/goer-utils/helpers"
 )
@@ -44,34 +42,14 @@ func SaveUploadedFile(c *gin.Context, file *multipart.FileHeader) (string, error
 
 	// Random filename
 	fileName := randomNameFromUploadFile(file)
-
-	path := storagePath + dirName + fileName
+	dir := storagePath + dirName
+	path := dir + fileName
 	if err := c.SaveUploadedFile(file, path); err != nil {
 		return "", err
 	}
 
 	// Open image
-	src, err := imaging.Open(path, imaging.AutoOrientation(true))
-	if err != nil {
-		return "", err
-	}
-
-	// Resize ratio
-	resizeRatio := getResizeRatio(file)
-	width := float64(src.Bounds().Size().X) * resizeRatio
-
-	// Resize
-	src = imaging.Resize(src, int(width), 0, imaging.Lanczos)
-	log.Println(src.Bounds().Size())
-	resizedFilename := randomNameFromUploadFile(file)
-	resizedPath := storagePath + dirName + resizedFilename
-	err = imaging.Save(src, resizedPath)
-	if err != nil {
-		return "", err
-	}
-
-	// Remove old file
-	err = os.Remove(path)
+	resizedPath, err := Resize(dir, fileName, file)
 	if err != nil {
 		return "", err
 	}
