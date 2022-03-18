@@ -5,7 +5,6 @@ import (
 	commonRequest "goer/app/http/requests/common"
 	"goer/app/rules"
 	"goer/global/errno"
-	"goer/pkg/file"
 	"goer/pkg/form"
 	"goer/pkg/response"
 
@@ -34,7 +33,7 @@ func (*FileController) Upload(c *gin.Context) {
 		return
 	}
 
-	path, err := file.SaveUploadedFile(c, request.Image)
+	path, err := form.SaveUploadedFile(c, request.Image)
 	if err != nil {
 		response.Fail(c, errno.InternalServerError)
 	}
