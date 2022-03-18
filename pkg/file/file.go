@@ -11,10 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"goer/pkg/helpers"
-
 	"github.com/disintegration/imaging"
 	"github.com/gin-gonic/gin"
+	"github.com/goer-project/goer-utils/helpers"
 )
 
 func Put(data []byte, to string) error {

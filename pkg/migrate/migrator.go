@@ -5,10 +5,10 @@ import (
 	"io/ioutil"
 
 	"goer/global"
-	"goer/pkg/console"
 	"goer/pkg/database"
 	"goer/pkg/file"
 
+	"github.com/goer-project/goer-utils/console"
 	"github.com/mgutz/ansi"
 	"gorm.io/gorm"
 )

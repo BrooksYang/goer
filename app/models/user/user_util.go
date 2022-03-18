@@ -2,8 +2,8 @@ package user
 
 import (
 	"goer/global"
-	"goer/pkg/helpers"
 
+	"github.com/goer-project/goer-utils/helpers"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )

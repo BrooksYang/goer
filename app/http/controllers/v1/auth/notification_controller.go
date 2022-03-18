@@ -9,11 +9,11 @@ import (
 	"goer/global"
 	"goer/global/errno"
 	"goer/pkg/form"
-	"goer/pkg/helpers"
 	"goer/pkg/mail"
 	"goer/pkg/response"
 
 	"github.com/gin-gonic/gin"
+	"github.com/goer-project/goer-utils/helpers"
 )
 
 type NotificationController struct {

@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"goer/pkg/console"
 	"goer/pkg/file"
-	"goer/pkg/str"
 
+	"github.com/goer-project/goer-utils/console"
+	"github.com/goer-project/goer-utils/helpers"
 	"github.com/iancoleman/strcase"
 	"github.com/mgutz/ansi"
 	"github.com/spf13/cobra"
@@ -49,20 +49,20 @@ func makeModelFromString(path string) Model {
 	name := arr[len(arr)-1]
 
 	model := Model{}
-	model.StructName = str.Singular(strcase.ToCamel(name))
-	model.StructNamePlural = str.Plural(model.StructName)
-	model.VariableNameSnake = str.Snake(model.StructName)
-	model.TableName = str.Snake(model.StructNamePlural)
-	model.VariableName = str.LowerCamel(model.StructName)
-	model.PackageName = str.Snake(model.StructName)
-	model.VariableNamePlural = str.LowerCamel(model.StructNamePlural)
+	model.StructName = helpers.Singular(strcase.ToCamel(name))
+	model.StructNamePlural = helpers.Plural(model.StructName)
+	model.VariableNameSnake = helpers.Snake(model.StructName)
+	model.TableName = helpers.Snake(model.StructNamePlural)
+	model.VariableName = helpers.LowerCamel(model.StructName)
+	model.PackageName = helpers.Snake(model.StructName)
+	model.VariableNamePlural = helpers.LowerCamel(model.StructNamePlural)
 
 	// Directory
 	directorArr := arr[:len(arr)-1]
 	model.Directory = strings.Join(directorArr, "/")
 	if model.Directory != "" {
 		model.Directory = model.Directory + "/"
-		model.PackageName = str.Snake(directorArr[len(directorArr)-1])
+		model.PackageName = helpers.Snake(directorArr[len(directorArr)-1])
 	}
 
 	// Table name

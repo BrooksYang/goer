@@ -7,9 +7,9 @@ import (
 
 	"goer/global"
 	"goer/pkg/auth"
-	"goer/pkg/helpers"
 
 	"github.com/gin-gonic/gin"
+	"github.com/goer-project/goer-utils/helpers"
 	"github.com/spf13/cast"
 	"go.uber.org/zap"
 )
