@@ -5,9 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"goer/pkg/file"
-
 	"github.com/goer-project/goer-utils/console"
+	"github.com/goer-project/goer-utils/file"
 	"github.com/goer-project/goer-utils/helpers"
 	"github.com/iancoleman/strcase"
 	"github.com/mgutz/ansi"

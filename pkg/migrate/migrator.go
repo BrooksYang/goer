@@ -6,9 +6,9 @@ import (
 
 	"goer/global"
 	"goer/pkg/database"
-	"goer/pkg/file"
 
 	"github.com/goer-project/goer-utils/console"
+	"github.com/goer-project/goer-utils/file"
 	"github.com/mgutz/ansi"
 	"gorm.io/gorm"
 )
