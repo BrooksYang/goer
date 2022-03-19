@@ -5,8 +5,8 @@ import (
 	"goer/cmd/make"
 	"goer/cmd/migrate"
 	"goer/global"
-	"goer/pkg/config"
 
+	"github.com/goer-project/goer-core/config"
 	"github.com/spf13/cobra"
 )
 
