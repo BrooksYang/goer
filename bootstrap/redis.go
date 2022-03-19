@@ -4,7 +4,8 @@ import (
 	"fmt"
 
 	"goer/global"
-	"goer/pkg/redis"
+
+	"github.com/goer-project/goer-core/redis"
 )
 
 func Redis() {

@@ -4,8 +4,9 @@ import (
 	"fmt"
 
 	"goer/global"
-	"goer/pkg/cache"
-	"goer/pkg/redis"
+
+	"github.com/goer-project/goer-core/cache"
+	"github.com/goer-project/goer-core/redis"
 )
 
 func Cache() {

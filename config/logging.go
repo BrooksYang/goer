@@ -3,7 +3,7 @@ package config
 import (
 	"os"
 
-	"github.com/goer-project/goer-utils/core/logger"
+	"github.com/goer-project/goer-core/logger"
 	"go.uber.org/zap"
 )
 

@@ -2,9 +2,9 @@ package global
 
 import (
 	"goer/config"
-	"goer/pkg/cache"
-	"goer/pkg/redis"
 
+	"github.com/goer-project/goer-core/cache"
+	"github.com/goer-project/goer-core/redis"
 	"gorm.io/gorm"
 )
 
