@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"goer/global"
 	"goer/pkg/database"
 
 	"github.com/goer-project/goer-utils/console"
@@ -25,11 +24,11 @@ type Migration struct {
 	Batch     int
 }
 
-func NewMigrator() *Migrator {
+func NewMigrator(db *gorm.DB, folder string) *Migrator {
 	migrator := &Migrator{
-		Folder:   global.MigrationsFolder + "/",
-		DB:       global.DB,
-		Migrator: global.DB.Migrator(),
+		Folder:   folder,
+		DB:       db,
+		Migrator: db.Migrator(),
 	}
 
 	migrator.createMigrationsTable()
@@ -89,7 +88,7 @@ func (migrator *Migrator) rollbackMigrations(migrations []Migration) bool {
 
 		migrationFile := getMigrationFile(_migration.Migration)
 		if migrationFile.Down != nil {
-			migrationFile.Down(global.DB.Migrator())
+			migrationFile.Down(migrator.DB.Migrator())
 		}
 
 		ran = true
@@ -138,7 +137,7 @@ func (migrator *Migrator) runUpMigration(migrationFile MigrationFile, batch int)
 	if migrationFile.Up != nil {
 		fmt.Printf("%s %s\n", ansi.Color("Migrating:", "yellow"), migrationFile.FileName)
 
-		migrationFile.Up(global.DB.Migrator())
+		migrationFile.Up(migrator.DB.Migrator())
 
 		fmt.Printf("%s  %s\n", ansi.Color("Migrated:", "green"), migrationFile.FileName)
 	}

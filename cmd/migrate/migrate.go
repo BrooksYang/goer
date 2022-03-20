@@ -2,6 +2,7 @@ package migrate
 
 import (
 	"goer/database/migrations"
+	"goer/global"
 	"goer/pkg/migrate"
 
 	"github.com/spf13/cobra"
@@ -26,5 +27,5 @@ func migrator() *migrate.Migrator {
 	// Init migration files
 	migrations.Initialize()
 
-	return migrate.NewMigrator()
+	return migrate.NewMigrator(global.DB, global.MigrationsFolder+"/")
 }
