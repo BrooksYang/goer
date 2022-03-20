@@ -1,6 +1,6 @@
 package authRequest
 
-import "goapp/pkg/form"
+import "github.com/goer-project/goer/form"
 
 type LoginRequest struct {
 	Account  string `form:"account" binding:"required"`

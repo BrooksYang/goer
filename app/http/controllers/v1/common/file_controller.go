@@ -9,6 +9,7 @@ import (
 	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
+	formPkg "github.com/goer-project/goer/form"
 )
 
 type FileController struct {
@@ -33,7 +34,7 @@ func (*FileController) Upload(c *gin.Context) {
 		return
 	}
 
-	path, err := form.SaveUploadedFile(c, request.Image)
+	path, err := formPkg.SaveUploadedFile(c, request.Image)
 	if err != nil {
 		response.Fail(c, errno.InternalServerError)
 	}

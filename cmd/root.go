@@ -51,6 +51,7 @@ func initConfig() {
 	bootstrap.Logger()                         // Init logger
 	global.Config.App.SetTimezone()            // Init timezone
 	database.DB = database.Gorm()              // Init database
-	bootstrap.Redis()                          // Init redis
-	bootstrap.Cache()                          // Init cache
+	global.DB = database.DB
+	bootstrap.Redis() // Init redis
+	bootstrap.Cache() // Init cache
 }

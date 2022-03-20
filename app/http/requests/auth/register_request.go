@@ -1,6 +1,6 @@
 package authRequest
 
-import "goapp/pkg/form"
+import "github.com/goer-project/goer/form"
 
 type RegisterRequest struct {
 	Type       int    `form:"type" binding:"required,oneof=1 2"` // 1-邮箱注册，2-手机注册

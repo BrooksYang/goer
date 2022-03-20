@@ -4,12 +4,12 @@ import (
 	"mime/multipart"
 
 	"goapp/global/errno"
-	"goapp/pkg/form"
 	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"github.com/goer-project/goer-utils/file"
+	"github.com/goer-project/goer/form"
 )
 
 // Image struct for image information and storage location
