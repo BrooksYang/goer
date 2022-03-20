@@ -1,8 +1,8 @@
 package common
 
 import (
-	v1 "goer/app/http/controllers/v1"
-	"goer/pkg/response"
+	v1 "goapp/app/http/controllers/v1"
+	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

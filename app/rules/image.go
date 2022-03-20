@@ -3,9 +3,9 @@ package rules
 import (
 	"mime/multipart"
 
-	"goer/global/errno"
-	"goer/pkg/form"
-	"goer/pkg/response"
+	"goapp/global/errno"
+	"goapp/pkg/form"
+	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"

@@ -3,7 +3,7 @@ package commonRequest
 import (
 	"mime/multipart"
 
-	"goer/pkg/form"
+	"goapp/pkg/form"
 )
 
 type UploadRequest struct {

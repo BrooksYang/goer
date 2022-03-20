@@ -1,7 +1,7 @@
 package global
 
 import (
-	"goer/config"
+	"goapp/config"
 
 	"github.com/goer-project/goer-core/cache"
 	"github.com/goer-project/goer-core/redis"

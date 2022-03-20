@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"goer/config"
-	"goer/global"
+	"goapp/config"
+	"goapp/global"
 )
 
 func Logger() {

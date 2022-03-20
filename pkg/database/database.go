@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"goer/global"
+	"goapp/global"
 
 	"gorm.io/gorm"
 )

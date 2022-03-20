@@ -1,12 +1,12 @@
 package common
 
 import (
-	v1 "goer/app/http/controllers/v1"
-	commonRequest "goer/app/http/requests/common"
-	"goer/app/rules"
-	"goer/global/errno"
-	"goer/pkg/form"
-	"goer/pkg/response"
+	v1 "goapp/app/http/controllers/v1"
+	commonRequest "goapp/app/http/requests/common"
+	"goapp/app/rules"
+	"goapp/global/errno"
+	"goapp/pkg/form"
+	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

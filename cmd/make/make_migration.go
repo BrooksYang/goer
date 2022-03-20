@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"goer/global"
+	"goapp/global"
 
 	"github.com/spf13/cobra"
 )

@@ -1,6 +1,6 @@
 package authRequest
 
-import "goer/pkg/form"
+import "goapp/pkg/form"
 
 type PayPasswordReset struct {
 	Password                string `form:"password" json:"password" binding:"required"`

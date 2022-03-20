@@ -1,6 +1,6 @@
 package errno
 
-import "goer/pkg/response"
+import "goapp/pkg/response"
 
 /*
 |--------------------------------------------------------------------------

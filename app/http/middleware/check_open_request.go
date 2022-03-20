@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 	"time"
 
-	"goer/global"
-	"goer/global/errno"
-	"goer/pkg/response"
+	"goapp/global"
+	"goapp/global/errno"
+	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/goer-project/goer-utils/helpers"

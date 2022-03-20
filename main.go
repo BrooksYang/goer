@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "goer/cmd"
+import "goapp/cmd"
 
 func main() {
 	cmd.Execute()

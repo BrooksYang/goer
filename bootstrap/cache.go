@@ -3,7 +3,7 @@ package bootstrap
 import (
 	"fmt"
 
-	"goer/global"
+	"goapp/global"
 
 	"github.com/goer-project/goer-core/cache"
 	"github.com/goer-project/goer-core/redis"

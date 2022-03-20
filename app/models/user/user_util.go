@@ -1,7 +1,7 @@
 package user
 
 import (
-	"goer/global"
+	"goapp/global"
 
 	"github.com/goer-project/goer-utils/helpers"
 	"golang.org/x/crypto/bcrypt"

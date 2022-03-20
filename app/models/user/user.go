@@ -1,7 +1,7 @@
 package user
 
 import (
-	"goer/app/models"
+	"goapp/app/models"
 )
 
 type User struct {

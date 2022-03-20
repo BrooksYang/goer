@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"goer/pkg/response"
+	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"

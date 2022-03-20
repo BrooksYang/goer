@@ -1,8 +1,8 @@
 package migrations
 
 import (
-	"goer/app/models"
-	"goer/pkg/migrate"
+	"goapp/app/models"
+	"goapp/pkg/migrate"
 
 	"gorm.io/gorm"
 )

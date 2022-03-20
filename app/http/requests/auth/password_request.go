@@ -1,6 +1,6 @@
 package authRequest
 
-import "goer/pkg/form"
+import "goapp/pkg/form"
 
 type PasswordRequest struct {
 	OldPassword          string `form:"old_password" binding:"required,min=6"`

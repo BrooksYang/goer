@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"goer/docs"
+	"goapp/docs"
 
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/files"

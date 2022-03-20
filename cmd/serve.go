@@ -9,8 +9,8 @@ import (
 	"os/signal"
 	"time"
 
-	"goer/bootstrap"
-	"goer/global"
+	"goapp/bootstrap"
+	"goapp/global"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"

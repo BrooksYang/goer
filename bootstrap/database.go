@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"goer/global"
+	"goapp/global"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlite"

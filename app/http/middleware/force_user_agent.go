@@ -3,7 +3,7 @@ package middleware
 import (
 	"errors"
 
-	"goer/pkg/response"
+	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

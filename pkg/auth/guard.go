@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"goer/app/models/user"
+	"goapp/app/models/user"
 
 	"github.com/gin-gonic/gin"
 )

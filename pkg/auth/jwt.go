@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"goer/global"
+	"goapp/global"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"

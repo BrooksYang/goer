@@ -1,9 +1,9 @@
 package migrate
 
 import (
-	"goer/database/migrations"
-	"goer/global"
-	"goer/pkg/migrate"
+	"goapp/database/migrations"
+	"goapp/global"
+	"goapp/pkg/migrate"
 
 	"github.com/spf13/cobra"
 )

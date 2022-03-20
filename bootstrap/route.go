@@ -1,9 +1,9 @@
 package bootstrap
 
 import (
-	"goer/app/http/middleware"
-	"goer/global"
-	"goer/routes"
+	"goapp/app/http/middleware"
+	"goapp/global"
+	"goapp/routes"
 
 	"github.com/gin-gonic/gin"
 )

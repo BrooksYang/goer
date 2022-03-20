@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"goer/global"
-	"goer/global/errno"
-	"goer/pkg/response"
+	"goapp/global"
+	"goapp/global/errno"
+	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"

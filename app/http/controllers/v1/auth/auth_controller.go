@@ -1,14 +1,14 @@
 package auth
 
 import (
-	v1 "goer/app/http/controllers/v1"
-	authRequest "goer/app/http/requests/auth"
-	"goer/app/models/user"
-	"goer/global"
-	"goer/global/errno"
-	"goer/pkg/auth"
-	"goer/pkg/form"
-	"goer/pkg/response"
+	v1 "goapp/app/http/controllers/v1"
+	authRequest "goapp/app/http/requests/auth"
+	"goapp/app/models/user"
+	"goapp/global"
+	"goapp/global/errno"
+	"goapp/pkg/auth"
+	"goapp/pkg/form"
+	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"

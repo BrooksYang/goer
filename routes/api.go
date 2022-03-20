@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"goer/app/http/controllers/v1/auth"
-	"goer/app/http/middleware"
+	"goapp/app/http/controllers/v1/auth"
+	"goapp/app/http/middleware"
 
 	"github.com/gin-gonic/gin"
 )

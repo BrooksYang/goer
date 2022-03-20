@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"goer/global"
-	"goer/pkg/auth"
+	"goapp/global"
+	"goapp/pkg/auth"
 
 	"github.com/gin-gonic/gin"
 	"github.com/goer-project/goer-utils/helpers"

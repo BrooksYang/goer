@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/smtp"
 
-	"goer/global"
+	"goapp/global"
 
 	"github.com/jordan-wright/email"
 )

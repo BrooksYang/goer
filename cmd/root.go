@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"goer/bootstrap"
-	"goer/cmd/make"
-	"goer/cmd/migrate"
-	"goer/global"
+	"goapp/bootstrap"
+	"goapp/cmd/make"
+	"goapp/cmd/migrate"
+	"goapp/global"
 
 	"github.com/goer-project/goer-core/config"
 	"github.com/spf13/cobra"

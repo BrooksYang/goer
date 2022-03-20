@@ -1,10 +1,10 @@
 package middleware
 
 import (
-	"goer/app/models/user"
-	"goer/global"
-	"goer/pkg/auth"
-	"goer/pkg/response"
+	"goapp/app/models/user"
+	"goapp/global"
+	"goapp/pkg/auth"
+	"goapp/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

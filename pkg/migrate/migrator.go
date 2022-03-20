@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"goer/pkg/database"
+	"goapp/pkg/database"
 
 	"github.com/goer-project/goer-utils/console"
 	"github.com/goer-project/goer-utils/file"

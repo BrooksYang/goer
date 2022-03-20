@@ -1,6 +1,6 @@
 package authRequest
 
-import "goer/pkg/form"
+import "goapp/pkg/form"
 
 type ProfileRequest struct {
 	Username string `form:"username" binding:"alphanum"`

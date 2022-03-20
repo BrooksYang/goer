@@ -3,7 +3,7 @@ package paginator
 import (
 	"math"
 
-	"goer/global"
+	"goapp/global"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"

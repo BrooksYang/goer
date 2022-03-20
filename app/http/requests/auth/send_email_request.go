@@ -1,6 +1,6 @@
 package authRequest
 
-import "goer/pkg/form"
+import "goapp/pkg/form"
 
 type SendEmailRequest struct {
 	Email string `form:"email" binding:"required,email"`

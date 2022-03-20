@@ -3,7 +3,7 @@ package cmd
 import (
 	"time"
 
-	"goer/global"
+	"goapp/global"
 
 	"github.com/robfig/cron/v3"
 	"github.com/spf13/cobra"
