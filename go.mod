@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-playground/validator/v10 v10.10.1
-	github.com/goer-project/goer v0.4.0
+	github.com/goer-project/goer v0.4.1
 	github.com/goer-project/goer-core v0.1.1
 	github.com/goer-project/goer-utils v0.6.0
 	github.com/golang-jwt/jwt v3.2.2+incompatible
