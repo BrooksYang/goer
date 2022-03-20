@@ -179,8 +179,8 @@ github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LB
 github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/melR3HDY=
 github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0/go.mod h1:fyg7847qk6SyHyPtNmDHnmrv/HOrqktSC+C9fM+CJOE=
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
-github.com/goer-project/goer v0.4.1 h1:Hg+RXRZvDFL/mt6OBo9ofhWVW5sQWWho4W68Zz9CSgA=
-github.com/goer-project/goer v0.4.1/go.mod h1:QQVSPN2mKsn8jHcYsTBdMQlgxiPuYaNhXkjnGQMCq6w=
+github.com/goer-project/goer v0.4.2 h1:W/+FKIQFS5RKK5dcjak+P94N8+YZxVzCMlNzEFhp1cg=
+github.com/goer-project/goer v0.4.2/go.mod h1:BYSG+2W3RNJPtt3tJEv+YFJhprOf9l3/hVVzTbQxi34=
 github.com/goer-project/goer-core v0.1.1 h1:iAx6NS6oD/N8u2UqMcwefv1JjohZ1M5vSlaWLlMMcVg=
 github.com/goer-project/goer-core v0.1.1/go.mod h1:vUyUyCRf3h3IrilFzScKlTDayQUwA346K6nJPImONLI=
 github.com/goer-project/goer-utils v0.6.0 h1:BsHujgAzHHTSQWz+hBMyvBR04fWlUpRQ6HgMjzElYtk=
