@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"goapp/bootstrap"
-	"goapp/cmd/make"
-	"goapp/cmd/migrate"
 	"goapp/global"
 
 	"github.com/goer-project/goer-core/config"
+	"github.com/goer-project/goer/cmd/make"
+	"github.com/goer-project/goer/cmd/migrate"
+	"github.com/goer-project/goer/database"
 	"github.com/spf13/cobra"
 )
 
@@ -37,7 +38,7 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
-	// Add sub command
+	// Add sub command (only for development)
 	rootCmd.AddCommand(
 		make.CmdMake,
 		migrate.CmdMigrate,
@@ -49,7 +50,7 @@ func initConfig() {
 	config.InitConfig(cfgFile, &global.Config) // Init viper
 	bootstrap.Logger()                         // Init logger
 	global.Config.App.SetTimezone()            // Init timezone
-	global.DB = bootstrap.Gorm()               // Init database
+	database.DB = database.Gorm()              // Init database
 	bootstrap.Redis()                          // Init redis
 	bootstrap.Cache()                          // Init cache
 }
